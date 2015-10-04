@@ -23,7 +23,8 @@ class Teams extends Application {
         //build an array of data
         foreach ($teams as $team) {
             $teamList[] = array('team' => $team['NAME'], 'division' => $team['DIVISION'], 
-                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE']);
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
         }
         
         $this->data['teamlist'] = $teamList;
