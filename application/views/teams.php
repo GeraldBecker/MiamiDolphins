@@ -9,7 +9,7 @@
         </tr>
         {teamlist}
         <tr>
-            <th><img src="assets/images/{image}"></th>
+            <td class="nopadding"><img src="assets/images/{image}"></td>
             <td>{team}</td>
             <td>{teamcode}</td>
             <td>{division}</td>
