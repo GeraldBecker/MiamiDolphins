@@ -2,7 +2,7 @@
     <table>
         <tr>
             <th></th>
-            <th>Player</th>
+            <th>Name</th>
             <th>Position</th>
             <th>Number</th>
             <th>Player History</th>
