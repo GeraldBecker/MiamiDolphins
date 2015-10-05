@@ -76,6 +76,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         <p>This site is made purely for academic learning.</p>
 
-        <p>All uses of names and media falls under the fiar use guidelines.</p>
+        <p>All uses of names and media falls under the fair use guidelines.</p>
     </div>
 </div>
