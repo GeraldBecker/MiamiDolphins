@@ -11,10 +11,9 @@ body {}
 }
 
 #main_logo {
-text-align:center;
-
-display:block;
-margin:auto;
+	text-align:center;
+	display:block;
+	margin:auto;
 }
 
 td.font {
