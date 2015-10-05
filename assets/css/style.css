@@ -1,0 +1,32 @@
+/* CSS definition file containing site stylesheet */
+body {}
+#content {width:100%; margin-left:5% auto;margin-right:5% auto;}
+#footer {font-size: small; font-style:italic;text-align:center;}
+.row>div {margin-bottom:10px;}
+
+#member_image {
+    width: 75px;
+    height: 75px;
+    border: 3px solid #8AC007;
+}
+
+#main_logo {
+	text-align:center;
+	display:block;
+	margin:auto;
+}
+
+td.font {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+
+div.teamtable td {
+    padding: 0 20px;
+    border: 1px solid black;
+}
+
+div.teamtable td.nopadding {
+    padding: 0;
+}
