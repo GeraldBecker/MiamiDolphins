@@ -24,4 +24,9 @@ td.font {
 
 div.teamtable td {
     padding: 0 20px;
+    border: 1px solid black;
+}
+
+div.teamtable td.nopadding {
+    padding: 0;
 }
