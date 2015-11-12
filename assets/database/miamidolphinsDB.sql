@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 04, 2015 at 06:44 AM
+-- Generation Time: Oct 05, 2015 at 05:33 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -21,6 +21,65 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `dolphins` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `dolphins`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `players`
+--
+
+CREATE TABLE IF NOT EXISTS `players` (
+  `PLAYERID` int(11) NOT NULL AUTO_INCREMENT,
+  `TEAMCODE` varchar(3) NOT NULL,
+  `FIRSTNAME` varchar(50) NOT NULL,
+  `LASTNAME` varchar(50) NOT NULL,
+  `PLAYERNUM` int(2) NOT NULL,
+  `IMAGE` varchar(100) DEFAULT NULL,
+  `INFO` varchar(500) NOT NULL,
+  `POSITION` varchar(30) NOT NULL,
+  PRIMARY KEY (`PLAYERID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+
+--
+-- Dumping data for table `players`
+--
+
+INSERT INTO `players` (`PLAYERID`, `TEAMCODE`, `FIRSTNAME`, `LASTNAME`, `PLAYERNUM`, `IMAGE`, `INFO`, `POSITION`) VALUES
+(1, 'MIA', 'Ryan', 'Tannehill', 17, 'RyanTannehill.jpg', 'Ryan Timothy Tannehill III is an American football quarterback for the Miami Dolphins of the National Football League. He was drafted by the Dolphins eighth overall in the 2012 NFL Draft. He played college football at Texas A&M.', 'Quarterback'),
+(2, 'MIA', 'Ndamukong', 'Suh', 93, 'NdamukongSuh.jpg', 'Ndamukong Suh is an American football defensive tackle for the Miami Dolphins of the National Football League. He was drafted by the Detroit Lions second overall in the 2010 NFL Draft.', 'Defensive tackle'),
+(3, 'MIA', 'Knowshon', 'Moreno', 28, 'KnowshonMoreno.jpg', 'Knowshon Rockwell Moreno is an American football running back who is currently a free agent. He was selected 12th overall in the 2009 NFL Draft by the Denver Broncos. He played college football at the University of Georgia.', 'Running back'),
+(4, 'MIA', 'DeVante', 'Parker', 11, 'DeVanteParker.jpg', 'DeVante Parker is an American football wide receiver for the Miami Dolphins of the National Football League. He played college football for the University of Louisville Cardinals.', 'Wide receiver'),
+(5, 'MIA', 'Matt', 'Moore', 8, 'MattMoore.jpg', 'Matthew Erickson Moore is an American football quarterback for the Miami Dolphins of the National Football League. He played college football at UCLA and Oregon State University.', 'Quarterback'),
+(6, 'MIA', 'Jarvis', 'Landry', 14, 'JarvisLandry.jpg', 'Jarvis Charles Landry is an American football wide receiver for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the second round of the 2014 NFL Draft. He played college football at LSU.', 'Wide receiver'),
+(7, 'MIA', 'Cameron', 'Wake', 91, 'CameronWake.jpg', 'Derek Cameron Wake is an American football defensive end for the Miami Dolphins of the National Football League. He played college football for Penn State University, and was signed by the New York Giants as an undrafted free agent in 2005.', 'Defensive end'),
+(8, 'MIA', 'Greg', 'Jennings', 85, 'GregJennings.jpg', 'Gregory Jennings, Jr. is an American football wide receiver for the Miami Dolphins of the National Football League. He was drafted by the Green Bay Packers out of Western Michigan University in the second round of the 2006 NFL Draft.', 'Wide receiver'),
+(9, 'MIA', 'Brent', 'Grimes', 21, 'BrentGrimes.jpg', 'Brent Omar Grimes, is an American football cornerback for the Miami Dolphins of the National Football League. He played college football at Shippensburg University, and signed with the Atlanta Falcons as an undrafted free agent in 2006.', 'Cornerback'),
+(10, 'MIA', 'Jay', 'Ajayi', 33, 'JayAjayi.jpg', 'Jay Ajayi is an English American football running back for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the fifth round of the 2015 NFL Draft. He played college football at Boise State.', 'Running back'),
+(11, 'MIA', 'Lamar', 'Miller', 26, 'LamarMiller.jpg', 'Lamar Miller is an American football running back for the Miami Dolphins of the National Football League. Miller played college football at the University of Miami and was considered one of the top running backs in the 2012 NFL Draft.', 'Running back'),
+(12, 'MIA', 'Kenny', 'Stills', 10, 'KennyStills.jpg', 'Kenneth Lee Stills, Jr. is an American football wide receiver for the Miami Dolphins of the National Football League.', 'Wide receiver'),
+(13, 'MIA', 'Jordan', 'Cameron', 84, 'JordanCameron.jpg', 'Jordan Cravens Cameron is an American football tight end for the Miami Dolphins of the National Football League. He was drafted by the Cleveland Browns in the fourth round of the 2011 NFL Draft. He played college football at USC.', 'Tight end'),
+(14, 'MIA', 'Chris', 'McCain', 47, 'ChrisMcCain.jpg', 'Christian Cornelius McCain is an American football linebacker for the Miami Dolphins of the National Football League. He played college football at California. He was signed by the Dolphins as an undrafted free agent in 2014.', 'Linebacker'),
+(15, 'MIA', 'Mike', 'Pouncey', 51, 'MikePouncey.jpg', 'James Michael Pouncey is an American football center and guard for the Miami Dolphins of the National Football League.', 'Center'),
+(16, 'MIA', 'Reshad', 'Jones', 20, 'ReshadJones.jpg', 'Reshad Monquez Jones is an American football safety for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the fifth round of the 2010 NFL Draft. He played college football at the University of Georgia.', 'Safety'),
+(17, 'MIA', 'Branden', 'Albert', 71, 'BrandenAlbert.jpg', 'Branden Albert is an American football offensive tackle for the Miami Dolphins of the National Football League. He was drafted by the Kansas City Chiefs 15th overall in the 2008 NFL Draft. He played college football at Virginia.', 'Tackle'),
+(18, 'MIA', 'Olivier', 'Vernon', 50, 'OlivierVernon.jpg', 'Olivier Alexander Vernon is an American football defensive end for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the third round of the 2012 NFL Draft. He played college football at the University of Miami', 'Defensive end'),
+(19, 'MIA', 'Louis', 'Delmas', 25, 'LouisDelmas.jpg', 'Louis Delmas is an American football safety for the Miami Dolphins of the National Football League. He was drafted by the Detroit Lions in the second round of the 2009 NFL Draft. He played college football at Western Michigan.', 'Safety'),
+(20, 'MIA', 'Tony', 'Lippett', 36, 'TonyLippett.jpg', 'Tony Lippett is an American football cornerback for the Miami Dolphins of the National Football League. He played college football for the Michigan State Spartans', 'Cornerback'),
+(21, 'MIA', 'C.J.', 'Mosley', 94, 'CJMosley.jpg', 'Calvin Michael "C. J." Mosley, Jr. is an American football defensive tackle for the Miami Dolphins of the National Football League. He was drafted by the Minnesota Vikings in the sixth round of the 2005 NFL Draft.', 'Defensive tackle'),
+(22, 'MIA', 'Jamar', 'Taylor', 22, 'JamarTaylor.jpg', 'Jamar Taylor is an American football cornerback for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the second round of the 2013 NFL Draft. He played college football at Boise State.', 'Cornerback'),
+(23, 'MIA', 'Rishard', 'Matthews', 86, 'RishardMatthews.jpg', 'Rishard Andre Matthews is an American football wide receiver for the Miami Dolphins of the National Football League. He played college football at the University of Nevada. He was drafted by the Dolphins in the seventh round of the 2012 NFL Draft', 'Wide receiver'),
+(24, 'MIA', 'Jelani', 'Jenkins', 43, 'JelaniJenkins.jpg', 'Jelani M. Jenkins is an American football linebacker for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the fourth round of the 2013 NFL Draft. He played college football for the University of Florida.', 'Linebacker'),
+(25, 'MIA', 'Jordan', 'Phillips', 97, 'JordanPhillips.jpg', 'Jordan Phillips is an American football defensive tackle for the Miami Dolphins of the National Football League . He played college football at Oklahoma.', 'Defensive tackle'),
+(26, 'MIA', 'Derrick', 'Shelby', 79, 'DerrickShelby.jpg', 'Derrick Shelby is an American football defensive end for the Miami Dolphins. He was not drafted in the 2012 NFL Draft. He played college football at Utah', 'Defensive end'),
+(27, 'MIA', 'A.J.', 'Francis', 96, 'AJFrancis.jpg', 'Anthony Joseph Francis is an American football defensive tackle for the Miami Dolphins of the National Football League. He was originally signed by the Dolphins as an undrafted free agent in 2013. Francis played college football at Maryland.', 'Defensive tackle'),
+(28, 'MIA', 'Koa', 'Misi', 55, 'KoaMisi.jpg', 'Nawa''akoa Lisiate Foti Analeseanoa Misi is an American football linebacker. He played college football at Utah. He was considered one of the top linebacker prospects for the 2010 NFL Draft.', 'Linebacker'),
+(29, 'MIA', 'Matt', 'Hazel', 83, 'MattHazel.jpg', 'Matt Hazel is an American football wide receiver for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the sixth round of the 2014 NFL Draft. He played college football at Coastal Carolina.', 'Wide receiver'),
+(30, 'MIA', 'Kelvin', 'Sheppard', 97, 'KelvinSheppard.jpg', 'Kelvin Anthony Sheppard is an American football linebacker for the Miami Dolphins of the National Football League. The Buffalo Bills drafted him with the 68th pick in the 3rd round of the 2011 NFL Draft. He played college football at LSU.', 'Linebacker'),
+(31, 'MIA', 'Dion', 'Sims', 80, 'DionSims.jpg', 'Dion Sims is an American football tight end for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the fourth round of the 2013 NFL Draft. He played college football at Michigan State.', 'Tight end'),
+(32, 'MIA', 'Jason', 'Fox', 74, 'JasonFox.jpg', 'Jason Fox is an American football offensive tackle for the Miami Dolphins of the National Football League. He was drafted by the Detroit Lions in the fourth round of the 2010 NFL Draft. He played college football at the University of Miami.', 'Tackle'),
+(33, 'MIA', 'Earl', 'Mitchell', 90, 'EarlMitchell.jpg', 'Earl Mitchell is an American football player for the Miami Dolphins of the National Football League. Mitchell is primarily a defensive tackle but has been recently tried out as a fullback.', 'Nose tackle'),
+(34, 'MIA', 'Terrence', 'Fede', 78, 'TerranceFede.jpg', 'Terrence Fede is an American football defensive end for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the seventh round of the 2014 NFL Draft. He played college football at Marist.', 'Defensive end'),
+(35, 'MIA', 'Dustin', 'Keller', 81, 'DustinKeller.jpg', 'Dustin Kendall Keller is a former American football tight end. He was drafted by the New York Jets in the first round of the 2008 NFL Draft. He played college football at Purdue. Keller has also been a member of the Miami Dolphins.', 'Tight end');
 
 -- --------------------------------------------------------
 
