@@ -19,8 +19,8 @@ class Player extends Application {
     function index()
     {
         $this->data['title'] = 'Player Profile Maintenance';
-	$this->data['pagebody'] = 'player_edit';       
-	$this->render();
+    	$this->data['pagebody'] = 'player_edit';       
+    	$this->render();
     }
     
     // Add a new player
@@ -135,6 +135,30 @@ class Player extends Application {
         }
         
         redirect('/players');
+    }
+    
+    function do_upload()
+    {
+        $config['upload_path'] = './assets/images/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '100';
+        $config['max_width']  = '1024';
+        $config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            return null;
+        }
+        else
+        {
+            $file = $this->upload->data('photo');
+            $nameoffile = $this->upload->data('file_name');
+            return $nameoffile;
+        }
+        
+        
     }
 }
 
