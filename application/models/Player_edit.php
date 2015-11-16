@@ -13,7 +13,7 @@
 class Player_edit extends MY_Model {
    
     public function __construct() {
-        parent::__construct('players', 'playerid    ');
+        parent::__construct('players', 'PLAYERID');
     }
     
     /**

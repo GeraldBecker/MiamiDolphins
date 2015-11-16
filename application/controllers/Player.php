@@ -19,9 +19,7 @@ class Player extends Application {
     function index()
     {
         $this->data['title'] = 'Player Profile Maintenance';
-        //$this->data['player'] = $this->player_edit->all();
-	$this->data['pagebody'] = 'player_edit';    // this is the view we want shown
-	        
+	$this->data['pagebody'] = 'player_edit';       
 	$this->render();
     }
     
