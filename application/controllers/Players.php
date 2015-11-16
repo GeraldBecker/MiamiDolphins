@@ -105,7 +105,7 @@ class Players extends Application {
             $players[] = array('firstname' => $record['FIRSTNAME'], 'lastname' => $record['LASTNAME'], 
                 'teamcode' => $record['TEAMCODE'], 'playernum' => $record['PLAYERNUM'], 
                 'position' => $record['POSITION'], 'info' => $record['INFO'], 
-                'image' => $record['IMAGE'], 'playerid' => 'PLAYERID');
+                'image' => $record['IMAGE'], 'playerid' => $record['PLAYERID']);
         }
         $this->data['players'] = $players;
 
