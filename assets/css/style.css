@@ -35,3 +35,9 @@ div.teamtable td.nopadding {
     text-align: center;
     font-size: 20px;
 }
+
+.playerstable {
+    border-style: solid;
+}
+
+.row {margin-bottom:10px;}

@@ -10,10 +10,10 @@
  *
  * @author Kevin Tangeman
  */
-class Players extends MY_Model {
+class Player_edit extends MY_Model {
    
     public function __construct() {
-        parent::__construct();
+        parent::__construct('players', 'PLAYERID');
     }
     
     /**

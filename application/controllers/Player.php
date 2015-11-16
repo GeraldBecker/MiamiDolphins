@@ -20,15 +20,15 @@ class Player extends Application {
     {
         $this->data['title'] = 'Player Profile Maintenance';
         $this->data['players'] = $this->players->all();
-	$this->data['pagebody'] = 'players_view';    // this is the view we want shown
-	        
-	$this->render();
+    	$this->data['pagebody'] = 'players_view';    // this is the view we want shown
+    	        
+    	$this->render();
     }
     
     // Add a new player
     function add()
-    {        
-        $player = $this->players->create();
+    {  
+        $player = $this->player_edit->create();
         $this->present($player);
     }
 

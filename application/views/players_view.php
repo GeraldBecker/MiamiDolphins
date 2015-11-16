@@ -1,3 +1,4 @@
+<div>
 Sort By: <select onchange="OrderSort(this.value);">
     {options}
     <option value="{value}">{text}</option>
@@ -6,21 +7,22 @@ Sort By: <select onchange="OrderSort(this.value);">
 <p><b>Currently sorting by: {ordermethod}</b></p>
 <div class="playerstable">
     <a href='/player/add'>Add a new player</a> 
+    {ddl}
     <table>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Number</th>
-            <th>Player History</th>
+        <tr class="playerstable">
+            <!-- <th></th> -->
+            <th class="playerstable"d="playerstable">Name</th>
+            <th class="playerstable">Position</th>
+            <th class="playerstable">Number</th>
+            <th class="playerstable">Player History</th>
         </tr>
         {players}
-        <tr>
-            <th><img src="/assets/images/{image}"></th>
-            <td>{firstname} {lastname}</td>
-            <td>{position}</td>
-            <td>{playernum}</td>
-            <td>{info}</td>
+        <tr id="playerstable">
+            <!-- <th><img src="/assets/images/{image}"></th> -->
+            <td class="playerstable">{firstname} {lastname}</td>
+            <td class="playerstable">{position}</td>
+            <td class="playerstable">{playernum}</td>
+            <td class="playerstable">{info}</td>
         </tr>
         {/players}
     </table>
