@@ -19,11 +19,10 @@ Layout: <select onchange="ChangeLayout(this.value);">
     <div class="span4">
     	<img src="/assets/images/{image}" width="150px" height="150px">
     	<p id="gallery_player_info"><a href='/player/edit/{playerid}'>{firstname} {lastname}</a><b>{playernum}</b></p>
-    </div>
-    {/players}
-</div>
 
-<div id="rosterlinks">
-{links}
-</div>
+    </div>
+
+    <div id="rosterlinks">
+    {links}
+    </div>
 </div>
