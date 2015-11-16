@@ -9,7 +9,7 @@
         </tr>
         {players}
         <tr>
-            <th><img src="assets/images/{image}"></th>
+            <th><img src="/assets/images/{image}"></th>
             <td>{firstname} {lastname}</td>
             <td>{position}</td>
             <td>{playernum}</td>
@@ -17,4 +17,7 @@
         </tr>
         {/players}
     </table>
+    <div id="rosterlinks">
+    {links}
+    </div>
 </div>
