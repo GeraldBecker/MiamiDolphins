@@ -21,7 +21,7 @@ Layout: <select onchange="ChangeLayout(this.value);">
     	<p id="gallery_player_info"><a href='/player/edit/{playerid}'>{firstname} {lastname}</a><b>{playernum}</b></p>
 
     </div>
-
+    {/players}
     <div id="rosterlinks">
     {links}
     </div>
