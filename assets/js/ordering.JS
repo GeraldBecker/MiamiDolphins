@@ -2,6 +2,6 @@
 */
 function OrderSort(orderby)
 {
-     location.href += "/order/" + orderby;
+    location.href = "/players/order/" + orderby;
 }
 
