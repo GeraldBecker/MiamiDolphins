@@ -5,13 +5,18 @@ Sort By: <select onchange="OrderSort(this.value);">
     {/options}
 </select>
 <p><b>Currently sorting by: {ordermethod}</b></p>
-<div class="playerstable">
+Layout: <select onchange="ChangeLayout(this.value);">
+    {layoutoptions}
+    <option value="{value}">{text}</option>
+    {/layoutoptions}
+</select>
+<!-- <p><b>Currently sorting by: {ordermethod}</b></p>-->
+<div> 
     <a href='/player/add'>Add a new player</a> 
-    {ddl}
     <table>
         <tr class="playerstable">
             <!-- <th></th> -->
-            <th class="playerstable"d="playerstable">Name</th>
+            <th class="playerstable">Name</th>
             <th class="playerstable">Position</th>
             <th class="playerstable">Number</th>
             <th class="playerstable">Player History</th>
@@ -29,4 +34,5 @@ Sort By: <select onchange="OrderSort(this.value);">
     <div id="rosterlinks">
     {links}
     </div>
+</div>
 </div>
