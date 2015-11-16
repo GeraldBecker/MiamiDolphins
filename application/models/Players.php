@@ -1,15 +1,16 @@
 <?php
 
 /**
- * Players_list
+ * Players Model
  * 
- * Retrieves all the data from the Players table.
+ * Provides all the CRUDdy methods for accessing and manipulating the data 
+ * in the Players table.
  * 
- * models/Players_list.php
+ * models/Players.php
  *
- * @author Kevin
+ * @author Kevin Tangeman
  */
-class Players_list extends CI_Model {
+class Players extends MY_Model {
    
     public function __construct() {
         parent::__construct();
