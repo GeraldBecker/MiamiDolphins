@@ -9,7 +9,7 @@
  *
  * @author Kevin
  */
-class Players_list extends MY_Model {
+class Players_list extends CI_Model {
    
     public function __construct() {
         parent::__construct();

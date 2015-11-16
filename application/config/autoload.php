@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'parser', 'session');
+$autoload['libraries'] = array('database', 'parser', 'session', 'caboose');
 
 /*
 | -------------------------------------------------------------------
@@ -126,4 +126,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('team_list', 'players_list', 'players');
+$autoload['model'] = array('team_list', 'players_list', 'player_edit');

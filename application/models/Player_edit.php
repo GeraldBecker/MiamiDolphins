@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Players Model
+ * Player_edit Model
  * 
  * Provides all the CRUDdy methods for accessing and manipulating the data 
  * in the Players table.
  * 
- * models/Players.php
+ * models/Player_edit.php
  *
  * @author Kevin Tangeman
  */
-class Players extends MY_Model {
+class Player_edit extends MY_Model {
    
     public function __construct() {
-        parent::__construct();
+        parent::__construct('players', 'playerid    ');
     }
     
     /**
