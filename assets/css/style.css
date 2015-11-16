@@ -121,6 +121,20 @@ div.playerstable td.nopadding {
     text-align: center;
 }
 
+#sort_form {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 450px;
+    float: left;
+}
+
+#layout_form {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 450px;
+    float: right;
+}
+
 #rosterlinks {
     text-align: center;
     font-size: 20px;
