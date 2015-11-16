@@ -57,7 +57,7 @@ class Player extends Application {
             }          
         }
         $this->data['message'] = $message;        
-        $this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID, '', 10, 10, true);
+        $this->data['fplayerid'] = makeTextField('', 'playerid', $player->PLAYERID, '', 10, 10, false);
         $this->data['ffirstname'] = makeTextField('First Name', 'firstname', $player->FIRSTNAME);
         $this->data['flastname'] = makeTextField('Last Name', 'lastname', $player->LASTNAME);       
         $this->data['fteamcode'] = makeTextField('Team Code', 'teamcode', $player->TEAMCODE);
@@ -97,6 +97,13 @@ class Player extends Application {
         $record->IMAGE = $this->input->post('image');
         $record->INFO = $this->input->post('info');
         
+        
+        if( $formSubmit == 'delete' ) {
+            $this->player_edit->delete($record->PLAYERID);
+            redirect('/players');
+        }
+        
+        
         // Validate record
         if(empty($record->FIRSTNAME))
             $this->errors[] = 'You must specify a first name.';
@@ -122,9 +129,6 @@ class Player extends Application {
             $this->present($record);
             return; // make sure we don't try to save anything
         }
-        
-        if( $formSubmit == 'delete' )
-            $this->player_edit->delete($record->PLAYERID);
         
         // Save record
         if(empty($record->PLAYERID))
