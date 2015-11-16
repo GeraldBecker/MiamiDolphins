@@ -1,19 +1,49 @@
 /* CSS definition file containing site stylesheet */
-body {}
-#content {width:100%; margin-left:5% auto;margin-right:5% auto;}
-#footer {font-size: small; font-style:italic;text-align:center;}
-.row>div {margin-bottom:10px;}
+body {
+    margin: 20px, 20px, 20px, 20px;
+    background-color: #7dd0d6;
+    background-image: url("/assets/images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#content {
+    width:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer {
+    font-size: small;
+    font-style:italic;
+    text-align:center;
+    padding: 30px;
+}
+
+.row {
+    margin-bottom:10px;
+}
 
 #member_image {
     width: 75px;
     height: 75px;
-    border: 3px solid #8AC007;
+    border: 3px solid #f58220;
+}
+
+#member_table {
+    text-align: center;
 }
 
 #main_logo {
-	text-align:center;
-	display:block;
-	margin:auto;
+	text-align: center;
+	display: block;
+	margin: auto;
 }
 
 td.font {
@@ -21,6 +51,18 @@ td.font {
 	font-weight: bold;
 }
 
+.navbar-inner {
+    background-image: url("/assets/images/nav/navbar_bg.png");
+    background-size: cover;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 50px;
+}
+
+div.teamtable {
+    text-align: center;
+}
 
 div.teamtable td {
     padding: 0 20px;
@@ -30,3 +72,27 @@ div.teamtable td {
 div.teamtable td.nopadding {
     padding: 0;
 }
+
+div.playerstable {
+    text-align: center;
+    border-style: solid;
+}
+
+div.playerstable td {
+    padding: 0 20px;
+    border: 1px solid black;
+}
+
+div.playerstable td.nopadding {
+    padding: 0;
+}
+
+div.about {
+    background-color: #000;
+}
+
+#rosterlinks {
+    text-align: center;
+    font-size: 20px;
+}
+

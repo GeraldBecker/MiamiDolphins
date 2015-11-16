@@ -6,6 +6,7 @@ $config['menu_choices'] = array(
     	array('name' => 'Home', 'link' => '/'),
         array('name' => 'Roster', 'link' => '/players'),
         array('name' => 'Teams', 'link' => '/teams'),
+        array('name' => 'Edit', 'link' => '/players'),
         array('name' => 'About', 'link' => '/about')
         )
     );
@@ -38,7 +39,7 @@ $config['base_url'] = '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
