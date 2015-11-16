@@ -29,6 +29,14 @@ class Player extends Application {
         $player = $this->player_edit->create();
         $this->present($player);
     }
+    
+    // Edit an existing player
+    function edit()
+    {   
+        $this->data['mode'] = 'edit';
+        $player = $this->player_edit->get(2);
+        $this->present($player);
+    }
 
     // Present a player for adding/editing
     function present($player)
@@ -45,15 +53,22 @@ class Player extends Application {
         $this->data['message'] = $message;        
         //$this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID,
         //        "Unique record identifier, system-assigned", 10, 10, true);
+        $this->data['fplayerid'] = $player->PLAYERID;
         $this->data['ffirstname'] = makeTextField('First Name', 'firstname', $player->FIRSTNAME);
         $this->data['flastname'] = makeTextField('Last Name', 'lastname', $player->LASTNAME);       
         $this->data['fteamcode'] = makeTextField('Team Code', 'teamcode', $player->TEAMCODE);
         $this->data['fplayernum'] = makeTextField('Jersey Number', 'playernum', $player->PLAYERNUM);
         $this->data['fposition'] = makeTextField('Position', 'position', $player->POSITION);
         $this->data['fimage'] = makeTextField('Photo File Name', 'image', $player->IMAGE);
-        $this->data['finfo'] = makeTextArea('Player History', 'info', $player->INFO);       
-        $this->data['fsubmit'] = makeSubmitButton('Save Player', 
-                "Click here to validate the player data", 'btn-success');        
+        $this->data['finfo'] = makeTextArea('Player History', 'info', $player->INFO);   
+        
+        $this->data['fsubmit'] = makeSubmitButton('Save', 
+                "Click here to validate the player data", 'btn-success');
+//        if($this->data['mode'] = 'edit')
+//        {
+//            
+//        }        
+        
         $this->data['pagebody'] = 'player_edit';
         $this->data['title'] = 'Player Profile Maintenance';
         $this->render();
@@ -101,10 +116,15 @@ class Player extends Application {
         }
         
         // Save record
-        if(empty($record->PLAYERID))
-            $this->player_edit->add($record);
-        else
+//        if(empty($record->PLAYERID))
+//            $this->player_edit->add($record);
+//        else
+//            $this->player_edit->update($record);
+        
+        if($this->data['mode'] = 'edit')
             $this->player_edit->update($record);
+        else
+            $this->player_edit->add($record);
         
         redirect('/players');
     }
