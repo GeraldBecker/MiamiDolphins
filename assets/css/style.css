@@ -75,6 +75,7 @@ div.teamtable td.nopadding {
 
 div.playerstable {
     text-align: center;
+    border-style: solid;
 }
 
 div.playerstable td {
@@ -89,3 +90,9 @@ div.playerstable td.nopadding {
 div.about {
     background-color: #000;
 }
+
+#rosterlinks {
+    text-align: center;
+    font-size: 20px;
+}
+
