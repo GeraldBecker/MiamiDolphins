@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 05, 2015 at 05:33 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Nov 16, 2015 at 11:22 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `dolphins`
 --
-CREATE DATABASE IF NOT EXISTS `dolphins` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `dolphins`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +26,7 @@ USE `dolphins`;
 -- Table structure for table `players`
 --
 
+DROP TABLE IF EXISTS `players`;
 CREATE TABLE IF NOT EXISTS `players` (
   `PLAYERID` int(11) NOT NULL AUTO_INCREMENT,
   `TEAMCODE` varchar(3) NOT NULL,
@@ -38,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `players` (
   `INFO` varchar(500) NOT NULL,
   `POSITION` varchar(30) NOT NULL,
   PRIMARY KEY (`PLAYERID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `players`
@@ -74,7 +73,7 @@ INSERT INTO `players` (`PLAYERID`, `TEAMCODE`, `FIRSTNAME`, `LASTNAME`, `PLAYERN
 (27, 'MIA', 'A.J.', 'Francis', 96, 'AJFrancis.jpg', 'Anthony Joseph Francis is an American football defensive tackle for the Miami Dolphins of the National Football League. He was originally signed by the Dolphins as an undrafted free agent in 2013. Francis played college football at Maryland.', 'Defensive tackle'),
 (28, 'MIA', 'Koa', 'Misi', 55, 'KoaMisi.jpg', 'Nawa''akoa Lisiate Foti Analeseanoa Misi is an American football linebacker. He played college football at Utah. He was considered one of the top linebacker prospects for the 2010 NFL Draft.', 'Linebacker'),
 (29, 'MIA', 'Matt', 'Hazel', 83, 'MattHazel.jpg', 'Matt Hazel is an American football wide receiver for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the sixth round of the 2014 NFL Draft. He played college football at Coastal Carolina.', 'Wide receiver'),
-(30, 'MIA', 'Kelvin', 'Sheppard', 97, 'KelvinSheppard.jpg', 'Kelvin Anthony Sheppard is an American football linebacker for the Miami Dolphins of the National Football League. The Buffalo Bills drafted him with the 68th pick in the 3rd round of the 2011 NFL Draft. He played college football at LSU.', 'Linebacker'),
+(30, 'MIA', 'Kelvin', 'Sheppard', 52, 'KelvinSheppard.jpg', 'Kelvin Anthony Sheppard is an American football linebacker for the Miami Dolphins of the National Football League. The Buffalo Bills drafted him with the 68th pick in the 3rd round of the 2011 NFL Draft. He played college football at LSU.', 'Linebacker'),
 (31, 'MIA', 'Dion', 'Sims', 80, 'DionSims.jpg', 'Dion Sims is an American football tight end for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the fourth round of the 2013 NFL Draft. He played college football at Michigan State.', 'Tight end'),
 (32, 'MIA', 'Jason', 'Fox', 74, 'JasonFox.jpg', 'Jason Fox is an American football offensive tackle for the Miami Dolphins of the National Football League. He was drafted by the Detroit Lions in the fourth round of the 2010 NFL Draft. He played college football at the University of Miami.', 'Tackle'),
 (33, 'MIA', 'Earl', 'Mitchell', 90, 'EarlMitchell.jpg', 'Earl Mitchell is an American football player for the Miami Dolphins of the National Football League. Mitchell is primarily a defensive tackle but has been recently tried out as a fullback.', 'Nose tackle'),
@@ -87,6 +86,7 @@ INSERT INTO `players` (`PLAYERID`, `TEAMCODE`, `FIRSTNAME`, `LASTNAME`, `PLAYERN
 -- Table structure for table `teams`
 --
 
+DROP TABLE IF EXISTS `teams`;
 CREATE TABLE IF NOT EXISTS `teams` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `TEAMCODE` varchar(3) NOT NULL,
