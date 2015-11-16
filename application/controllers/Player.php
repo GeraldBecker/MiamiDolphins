@@ -29,6 +29,20 @@ class Player extends Application {
         $player = $this->player_edit->create();
         $this->present($player);
     }
+    
+    // Edit an existing player
+    function edit($playerid)
+    {   
+        $player = $this->player_edit->get($playerid);
+        $this->present($player);
+    }
+    
+    // Delete an existing player
+    function delete($playerid)
+    {   
+        $player = $this->player_edit->delete($playerid);
+        //$this->present($player);
+    }
 
     // Present a player for adding/editing
     function present($player)
@@ -43,17 +57,22 @@ class Player extends Application {
             }          
         }
         $this->data['message'] = $message;        
-        //$this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID,
-        //        "Unique record identifier, system-assigned", 10, 10, true);
+        $this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID);
         $this->data['ffirstname'] = makeTextField('First Name', 'firstname', $player->FIRSTNAME);
         $this->data['flastname'] = makeTextField('Last Name', 'lastname', $player->LASTNAME);       
         $this->data['fteamcode'] = makeTextField('Team Code', 'teamcode', $player->TEAMCODE);
         $this->data['fplayernum'] = makeTextField('Jersey Number', 'playernum', $player->PLAYERNUM);
         $this->data['fposition'] = makeTextField('Position', 'position', $player->POSITION);
         $this->data['fimage'] = makeTextField('Photo File Name', 'image', $player->IMAGE);
-        $this->data['finfo'] = makeTextArea('Player History', 'info', $player->INFO);       
-        $this->data['fsubmit'] = makeSubmitButton('Save Player', 
-                "Click here to validate the player data", 'btn-success');        
+        $this->data['finfo'] = makeTextArea('Player History', 'info', $player->INFO);   
+        
+        $this->data['fsubmit'] = makeSubmitButton('Save', 
+                "Click here to validate the player data", 'btn-success');
+       $this->data['fdelete'] = makeSubmitButton('Delete', 
+                "Click here to delete the player", 'btn-success');
+       $this->data['fcancel'] = makeSubmitButton('Cancel', 
+                "Click here to cancel the change", "submitbutton", "cancel", 'btn-success');
+        
         $this->data['pagebody'] = 'player_edit';
         $this->data['title'] = 'Player Profile Maintenance';
         $this->render();
@@ -62,6 +81,10 @@ class Player extends Application {
     // Process a player edit
     function confirm()
     {
+        $formSubmit = $this->input->post('submitType');
+        if( $formSubmit == 'cancel' )
+            redirect('/players');
+        
         $record = $this->player_edit->create();
         
         // Extract submitted fields
@@ -100,11 +123,16 @@ class Player extends Application {
             return; // make sure we don't try to save anything
         }
         
+        if( $formSubmit == 'delete' )
+            $this->player_edit->delete($record->PLAYERID);
+        
         // Save record
         if(empty($record->PLAYERID))
             $this->player_edit->add($record);
         else
-            $this->player_edit->update($record);
+        {
+            $this->player_edit->update($record);              
+        }
         
         redirect('/players');
     }
