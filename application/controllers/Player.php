@@ -13,21 +13,19 @@ class Player extends Application {
     {
 	parent::__construct();
         
-        //$this->load->helper('formfields');
+
     }
     
     function index()
     {
         $this->data['title'] = 'Player Profile Maintenance';
-        $this->data['players'] = $this->players->all();
-    	$this->data['pagebody'] = 'players_view';    // this is the view we want shown
-    	        
-    	$this->render();
+	$this->data['pagebody'] = 'player_edit';       
+	$this->render();
     }
     
     // Add a new player
     function add()
-    {  
+    {        
         $player = $this->player_edit->create();
         $this->present($player);
     }
@@ -41,12 +39,12 @@ class Player extends Application {
         {
             foreach ($this->errors as $invalid) 
             {
-                $message .= $invalid . BR;
+                $message .= $invalid . ' . . . ';                
             }          
         }
         $this->data['message'] = $message;        
-        $this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID,
-                "Unique record identifier, system-assigned", 10, 10, true);
+        //$this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID,
+        //        "Unique record identifier, system-assigned", 10, 10, true);
         $this->data['ffirstname'] = makeTextField('First Name', 'firstname', $player->FIRSTNAME);
         $this->data['flastname'] = makeTextField('Last Name', 'lastname', $player->LASTNAME);       
         $this->data['fteamcode'] = makeTextField('Team Code', 'teamcode', $player->TEAMCODE);
@@ -57,13 +55,14 @@ class Player extends Application {
         $this->data['fsubmit'] = makeSubmitButton('Save Player', 
                 "Click here to validate the player data", 'btn-success');        
         $this->data['pagebody'] = 'player_edit';
+        $this->data['title'] = 'Player Profile Maintenance';
         $this->render();
     }
     
     // Process a player edit
     function confirm()
     {
-        $record = $this->players->create();
+        $record = $this->player_edit->create();
         
         // Extract submitted fields
         $record->PLAYERID = $this->input->post('playerid');
@@ -103,11 +102,11 @@ class Player extends Application {
         
         // Save record
         if(empty($record->PLAYERID))
-            $this->players->add($record);
+            $this->player_edit->add($record);
         else
-            $this->players->update($record);
+            $this->player_edit->update($record);
         
-        redirect('/player');
+        redirect('/players');
     }
 }
 
