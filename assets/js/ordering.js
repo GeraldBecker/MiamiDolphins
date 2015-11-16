@@ -5,3 +5,7 @@ function OrderSort(orderby)
      location.href += "/order/" + orderby;
 }
 
+function ChangeLayout(layout) {
+	location.href += "/changeLayout/" + layout;	
+}
+

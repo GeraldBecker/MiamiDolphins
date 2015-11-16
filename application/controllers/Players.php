@@ -26,7 +26,13 @@ class Players extends Application {
     function index() {
         
         // this is the view we want shown
-        $this->data['pagebody'] = 'players_view';
+        if($this->session->has_userdata('layout')) {
+            $this->data['pagebody'] = $this->session->layout;
+        } else {
+            $this->data['pagebody'] = 'players_view';
+        }
+        
+        
         
         //Pagination stuff
         $config['base_url'] = base_url().'players/index';
@@ -88,6 +94,12 @@ class Players extends Application {
         $options[] = array('value' => 'PLAYERNUM', 'text'=>'Jersey Number');
         $this->data['options'] = $options;
 
+        $layoutoptions = array();
+        $layoutoptions[] = array('value' => '', 'text'=>'');
+        $layoutoptions[] = array('value' => 'player_gallery', 'text'=>'Gallery');
+        $layoutoptions[] = array('value' => 'players_view', 'text'=>'Table');
+        $this->data['layoutoptions'] = $layoutoptions;
+
         // build the list of players, to pass on to our view
         $players = array();
         foreach ($source as $record) {
@@ -122,5 +134,19 @@ class Players extends Application {
         $this->session->set_userdata('order_dir', $orderdir);
         
         redirect('/Players');
+    }
+
+    function changeLayout($layout) {
+        $sameLayout = false;
+        if($this->session->has_userdata('layout')) {
+            if($this->session->layout == $layout)
+                $sameLayout = true;
+        }
+
+        $this->session->set_userdata('layout', $layout);
+
+        redirect('/Players');
+/*        $this->data['pagebody'] = $layout;
+        $this->render();*/
     }
 }
