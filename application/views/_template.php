@@ -17,13 +17,16 @@ if (!defined('APPPATH'))
         <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="/assets/js/ordering.js"></script>
     </head>
     <body>
         <div class="container">
+            <img id="header_img" src="/assets/images/logo_full.png"></td>
             <div class="navbar">
                 <div class="navbar-inner">
-                    {menubar} </div>
+                    {menubar}
+                </div>
             </div>           
             <div id="content">
                 <h1>{title}</h1>

@@ -12,7 +12,7 @@ class Members extends CI_Model {
 		array('id' => '2', 'name' => 'Becky Zhou', 
 			'pic' => 'bzhou.png'),
 		array('id' => '3', 'name' => 'Kevin Tangeman', 
-			'pic' => 'ktangeman.png'),
+			'pic' => 'ktangeman.jpeg'),
 		array('id' => '4', 'name' => 'Wilson Carpenter', 
 			'pic' => 'wcarpenter.jpeg'),
 	);
