@@ -1,8 +1,9 @@
 <div >
-    <!--<img id="main_logo" src="assets/images/MiamiDolphinsWebpageLogo.jpg"> -->
+    <img id="stadium" src="assets/images/stadium.jpg">
+    
     <table id="membertable">
         <tr>
-            <th><h3>Members</h3></th>
+            <th><h3>Our Team</h3></th>
         </tr>
         <tr>
             {member_list}
