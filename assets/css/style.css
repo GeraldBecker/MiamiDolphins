@@ -51,9 +51,9 @@ title {
 }
 
 #stadium {
-	text-align: center;
-	display: block;
-	margin: auto;
+    text-align: center;
+    display: block;
+    margin: auto;
 }
 
 #img_players {
@@ -70,8 +70,8 @@ title {
 }
 
 td.font {
-	font-size: 15px;
-	font-weight: bold;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .navbar-inner {
@@ -117,4 +117,3 @@ div.playerstable td.nopadding {
     text-align: center;
     font-size: 20px;
 }
-
