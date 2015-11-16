@@ -30,3 +30,8 @@ div.teamtable td {
 div.teamtable td.nopadding {
     padding: 0;
 }
+
+#rosterlinks {
+    text-align: center;
+    font-size: 20px;
+}

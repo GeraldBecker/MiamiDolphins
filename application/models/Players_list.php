@@ -23,4 +23,15 @@ class Players_list extends MY_Model {
         $query = $this->db->get('players');
         return $query->result_array();
     }
+
+    public function record_count() {
+        return $this->db->count_all("players");
+    }
+
+    public function get($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get('players');
+        return $query->result_array();
+    }
+
 }
