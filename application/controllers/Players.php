@@ -16,6 +16,7 @@ class Players extends Application {
         parent::__construct();
         $this->load->library('pagination');
         $this->load->helper('url');
+        $this->load->library('session');
         //$this->load->library('uri');
     }
 
@@ -41,12 +42,51 @@ class Players extends Application {
         $this->pagination->initialize($config);
 
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
+        
+        $orderby = "FIRSTNAME"; //The default field that will be sorted
+        $orderdir = "asc"; //The default direction of the sort
+        
+        //Check if a custom sort by the user was selected
+        if($this->session->has_userdata('order_by')) {
+            $orderby = $this->session->order_by;
+            $orderdir = $this->session->order_dir;
+        }
+        
+        //Create the message to advise user of current sort order
+        $currentSort = '';
+        
+        if($orderby == 'FIRSTNAME') {
+            $currentSort .= ' First Name';
+        } else if($orderby == 'LASTNAME') {
+            $currentSort .= ' Last Name';
+        } else if($orderby == 'PLAYERNUM') {
+            $currentSort .= ' Jersey Number';
+        } else if($orderby == 'POSITION') {
+            $currentSort .= ' Position';
+        }
+        
+        if($orderdir == 'asc') {
+            $currentSort .= ' in ascending order.';
+        } else {
+            $currentSort .= ' in descending order.';
+        }
+        
+        
+        $this->data['ordermethod'] = $currentSort;
+        
         $source = 
-                $this->players_list->get($config["per_page"], $page);
+                $this->players_list->get($config["per_page"], $page, $orderby, $orderdir);
 
         $this->data["links"] = $this->pagination->create_links();
-
+        
+        //Create the options
+        $options = array();
+        $options[] = array('value' => '', 'text'=>'');
+        $options[] = array('value' => 'FIRSTNAME', 'text'=>'First Name');
+        $options[] = array('value' => 'LASTNAME', 'text'=>'Last Name');
+        $options[] = array('value' => 'POSITION', 'text'=>'Position');
+        $options[] = array('value' => 'PLAYERNUM', 'text'=>'Jersey Number');
+        $this->data['options'] = $options;
 
         // build the list of players, to pass on to our view
         $players = array();
@@ -61,5 +101,26 @@ class Players extends Application {
 
 
         $this->render();
+    }
+    
+    function order($orderby) {
+        $sameOrderby = false;
+        if($this->session->has_userdata('order_by')) {
+            if($this->session->order_by == $orderby)
+                $sameOrderby = true;
+        }
+        
+        $this->session->set_userdata('order_by', $orderby);
+        
+        $orderdir = "asc";
+        if($sameOrderby) {
+            if($this->session->order_dir == "asc") {
+                $orderdir = "desc";
+            }
+        }
+        
+        $this->session->set_userdata('order_dir', $orderdir);
+        
+        redirect('/Players');
     }
 }

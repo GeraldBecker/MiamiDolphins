@@ -1,3 +1,9 @@
+Sort By: <select onchange="OrderSort(this.value);">
+    {options}
+    <option value="{value}">{text}</option>
+    {/options}
+</select>
+<p><b>Currently sorting by: {ordermethod}</b></p>
 <div class="playerstable">
     <table>
         <tr>
