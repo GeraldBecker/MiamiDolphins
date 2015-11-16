@@ -1,17 +1,29 @@
 <div>
-Sort By: <select onchange="OrderSort(this.value);">
-    {options}
-    <option value="{value}">{text}</option>
-    {/options}
-</select>
-<p><b>Currently sorting by: {ordermethod}</b></p>
-<div class="playerstable">
-    <a href='/player/add'>Add a new player</a> 
-    {ddl}
+<div id="sort_form">
+    Sort By: <select onchange="OrderSort(this.value);">
+        {options}
+        <option value="{value}">{text}</option>
+        {/options}
+    </select>
+    <p><b>Currently sorting by: {ordermethod}</b></p>
+</div>
+<div id="layout_form">
+    Layout: <select onchange="ChangeLayout(this.value);">
+        {layoutoptions}
+        <option value="{value}">{text}</option>
+        {/layoutoptions}
+    </select>
+    <p><b>Current Layout: Table</b></p>
+</div>
+<div  class="playerstable"> 
+    
     <table>
+        <tr>
+            <td colspan="4" style="border:none;"><a href='/player/add' style="font-size:24px;">Add a new player</a> </td>
+        </tr>
         <tr class="playerstable">
             <!-- <th></th> -->
-            <th class="playerstable"d="playerstable">Name</th>
+            <th class="playerstable">Name</th>
             <th class="playerstable">Position</th>
             <th class="playerstable">Number</th>
             <th class="playerstable">Player History</th>
@@ -19,7 +31,7 @@ Sort By: <select onchange="OrderSort(this.value);">
         {players}
         <tr id="playerstable">
             <!-- <th><img src="/assets/images/{image}"></th> -->
-            <td class="playerstable">{firstname} {lastname}</td>
+            <td class="playerstable"><a href='/player/edit/{playerid}'>{firstname} {lastname}</a></td>
             <td class="playerstable">{position}</td>
             <td class="playerstable">{playernum}</td>
             <td class="playerstable">{info}</td>
@@ -29,4 +41,5 @@ Sort By: <select onchange="OrderSort(this.value);">
     <div id="rosterlinks">
     {links}
     </div>
+</div>
 </div>
