@@ -116,15 +116,15 @@ class Player extends Application {
         }
         
         // Save record
-//        if(empty($record->PLAYERID))
-//            $this->player_edit->add($record);
-//        else
-//            $this->player_edit->update($record);
-        
-        if($this->data['mode'] = 'edit')
-            $this->player_edit->update($record);
-        else
+        if(empty($record->PLAYERID))
             $this->player_edit->add($record);
+        else
+            $this->player_edit->update($record);
+        
+//        if($this->data['mode'] = 'edit')
+//            $this->player_edit->update($record);
+//        else
+//            $this->player_edit->add($record);
         
         redirect('/players');
     }
