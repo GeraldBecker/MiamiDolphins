@@ -1,6 +1,6 @@
 <div >
-    <img id="main_logo" src="assets/images/MiamiDolphinsWebpageLogo.jpg">
-    <table id="member_table">
+    <!--<img id="main_logo" src="assets/images/MiamiDolphinsWebpageLogo.jpg"> -->
+    <table id="membertable">
         <tr>
             <th><h3>Members</h3></th>
         </tr>
