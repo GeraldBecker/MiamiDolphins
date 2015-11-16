@@ -133,7 +133,7 @@ class Players extends Application {
         
         $this->session->set_userdata('order_dir', $orderdir);
         
-        redirect('/Players');
+        redirect('/players');
     }
 
     function changeLayout($layout) {
