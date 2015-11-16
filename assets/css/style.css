@@ -32,6 +32,10 @@ title {
     margin-bottom:10px;
 }
 
+.specialmargin {
+    margin-left: 50px;
+}
+
 #header_img {
     display: block;
     margin-left: auto;
