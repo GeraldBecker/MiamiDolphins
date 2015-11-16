@@ -10,8 +10,8 @@ Layout: <select onchange="ChangeLayout(this.value);">
     <option value="{value}">{text}</option>
     {/layoutoptions}
 </select>
-<!-- <p><b>Currently sorting by: {ordermethod}</b></p>-->
-<div> 
+<p><b>Current Layout: Table</b></p>
+<div  class="playerstable"> 
     <a href='/player/add'>Add a new player</a> 
     <table>
         <tr class="playerstable">
@@ -24,7 +24,7 @@ Layout: <select onchange="ChangeLayout(this.value);">
         {players}
         <tr id="playerstable">
             <!-- <th><img src="/assets/images/{image}"></th> -->
-            <td class="playerstable">{firstname} {lastname}</td>
+            <td class="playerstable"><a href='/player/edit/{playerid}'>{firstname} {lastname}</a></td>
             <td class="playerstable">{position}</td>
             <td class="playerstable">{playernum}</td>
             <td class="playerstable">{info}</td>
