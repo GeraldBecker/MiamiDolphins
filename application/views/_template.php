@@ -17,13 +17,14 @@ if (!defined('APPPATH'))
         <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/assets/css/style.css"/>
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="container">
             <div class="navbar">
                 <div class="navbar-inner">
-                    {menubar} </div>
+                    {menubar}
+                </div>
             </div>           
             <div id="content">
                 <h1>{title}</h1>
