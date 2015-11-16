@@ -5,6 +5,7 @@ Sort By: <select onchange="OrderSort(this.value);">
 </select>
 <p><b>Currently sorting by: {ordermethod}</b></p>
 <div class="playerstable">
+    <a href='/player/add'>Add a new player</a> 
     <table>
         <tr>
             <th></th>
