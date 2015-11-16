@@ -6,6 +6,6 @@ function OrderSort(orderby)
 }
 
 function ChangeLayout(layout) {
-	location.href += "/changeLayout/" + layout;	
+	location.href = "/players/changeLayout/" + layout;	
 }
 

@@ -15,13 +15,14 @@ Layout: <select onchange="ChangeLayout(this.value);">
 <div class="row">
     {players}
     <div class="span4">
-    	<img src="/assets/images/{image}">
-    	<p>{firstname} {lastname}</p>
-    	<p>{playernum}</p>
+    	<img src="/assets/images/{image}" width="120px" height="120px">
+    	<p>{firstname} {lastname} <b>{playernum}</b></p>
+
     </div>
     {/players}
 </div>
 
 <div id="rosterlinks">
 {links}
+</div>
 </div>

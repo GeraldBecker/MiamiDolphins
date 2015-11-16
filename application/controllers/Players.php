@@ -17,7 +17,6 @@ class Players extends Application {
         $this->load->library('pagination');
         $this->load->helper('url');
         $this->load->library('session');
-        //$this->load->library('uri');
     }
 
     /**
@@ -136,17 +135,11 @@ class Players extends Application {
         redirect('/players');
     }
 
-    function changeLayout($layout) {
-        $sameLayout = false;
-        if($this->session->has_userdata('layout')) {
-            if($this->session->layout == $layout)
-                $sameLayout = true;
-        }
 
+    //Change the layout of the page - either table view or gallery view
+    function changeLayout($layout) {
         $this->session->set_userdata('layout', $layout);
 
-        redirect('/Players');
-/*        $this->data['pagebody'] = $layout;
-        $this->render();*/
+        redirect('/players');
     }
 }

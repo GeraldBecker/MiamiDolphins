@@ -10,13 +10,13 @@ Layout: <select onchange="ChangeLayout(this.value);">
     <option value="{value}">{text}</option>
     {/layoutoptions}
 </select>
-<!-- <p><b>Currently sorting by: {ordermethod}</b></p>
-<div> -->
+<!-- <p><b>Currently sorting by: {ordermethod}</b></p>-->
+<div> 
     <a href='/player/add'>Add a new player</a> 
     <table>
         <tr class="playerstable">
             <!-- <th></th> -->
-            <th class="playerstable"d="playerstable">Name</th>
+            <th class="playerstable">Name</th>
             <th class="playerstable">Position</th>
             <th class="playerstable">Number</th>
             <th class="playerstable">Player History</th>
@@ -34,4 +34,5 @@ Layout: <select onchange="ChangeLayout(this.value);">
     <div id="rosterlinks">
     {links}
     </div>
+</div>
 </div>
