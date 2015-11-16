@@ -11,12 +11,13 @@ Layout: <select onchange="ChangeLayout(this.value);">
     <option value="{value}">{text}</option>
     {/layoutoptions}
 </select>
+<p><b>Current Layout: Gallery</b></p>
 
 <div class="row">
     {players}
     <div class="span4">
     	<img src="/assets/images/{image}" width="120px" height="120px">
-    	<p>{firstname} {lastname} <b>{playernum}</b></p>
+    	<p id="gallery_player_info"><a href='/player/edit/{playerid}'>{firstname} {lastname}</a><b>{playernum}</b></p>
 
     </div>
     {/players}

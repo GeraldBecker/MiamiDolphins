@@ -102,8 +102,10 @@ class Players extends Application {
         // build the list of players, to pass on to our view
         $players = array();
         foreach ($source as $record) {
-            $players[] = array('firstname' => $record['FIRSTNAME'], 'lastname' => $record['LASTNAME'], 'teamcode' => $record['TEAMCODE'],
-                'playernum' => $record['PLAYERNUM'], 'position' => $record['POSITION'], 'info' => $record['INFO'], 'image' => $record['IMAGE']);
+            $players[] = array('firstname' => $record['FIRSTNAME'], 'lastname' => $record['LASTNAME'], 
+                'teamcode' => $record['TEAMCODE'], 'playernum' => $record['PLAYERNUM'], 
+                'position' => $record['POSITION'], 'info' => $record['INFO'], 
+                'image' => $record['IMAGE'], 'playerid' => 'PLAYERID');
         }
         $this->data['players'] = $players;
 
