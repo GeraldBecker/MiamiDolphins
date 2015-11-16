@@ -1,19 +1,26 @@
 <div>
-Sort By: <select onchange="OrderSort(this.value);">
-    {options}
-    <option value="{value}">{text}</option>
-    {/options}
-</select>
-<p><b>Currently sorting by: {ordermethod}</b></p>
-Layout: <select onchange="ChangeLayout(this.value);">
-    {layoutoptions}
-    <option value="{value}">{text}</option>
-    {/layoutoptions}
-</select>
-<p><b>Current Layout: Table</b></p>
+<div id="sort_form">
+    Sort By: <select onchange="OrderSort(this.value);">
+        {options}
+        <option value="{value}">{text}</option>
+        {/options}
+    </select>
+    <p><b>Currently sorting by: {ordermethod}</b></p>
+</div>
+<div id="layout_form">
+    Layout: <select onchange="ChangeLayout(this.value);">
+        {layoutoptions}
+        <option value="{value}">{text}</option>
+        {/layoutoptions}
+    </select>
+    <p><b>Current Layout: Table</b></p>
+</div>
 <div  class="playerstable"> 
-    <a href='/player/add'>Add a new player</a> 
+    
     <table>
+        <tr>
+            <td colspan="4" style="border:none;"><a href='/player/add' style="font-size:24px;">Add a new player</a> </td>
+        </tr>
         <tr class="playerstable">
             <!-- <th></th> -->
             <th class="playerstable">Name</th>

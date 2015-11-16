@@ -17,6 +17,10 @@
         <p><b>Current Layout: Gallery</b></p>
     </div>
 
+<a href='/player/add' style="font-size:24px;">Add a new player</a> 
+<br><br>
+
+    
     <div class="row">
         {players}
         <div class="span4">
