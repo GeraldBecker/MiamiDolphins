@@ -22,7 +22,7 @@ if (!defined('APPPATH'))
     </head>
     <body>
         <div class="container">
-            <img id="header_img" src="assets/images/logo_full.png"></td>
+            <img id="header_img" src="/assets/images/logo_full.png"></td>
             <div class="navbar">
                 <div class="navbar-inner">
                     {menubar}
