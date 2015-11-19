@@ -149,3 +149,7 @@ div.playerstable td.nopadding {
     text-align: center;
     color: #8c8c8c;
 }
+
+input#playerid {
+    display: none;
+}

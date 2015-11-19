@@ -97,6 +97,13 @@ class Player extends Application {
         $record->IMAGE = $this->input->post('image');
         $record->INFO = $this->input->post('info');
         
+        
+        if( $formSubmit == 'delete' ) {
+            $this->player_edit->delete($record->PLAYERID);
+            redirect('/players');
+        }
+        
+        
         // Validate record
         if(empty($record->FIRSTNAME))
             $this->errors[] = 'You must specify a first name.';
@@ -122,9 +129,6 @@ class Player extends Application {
             $this->present($record);
             return; // make sure we don't try to save anything
         }
-        
-        if( $formSubmit == 'delete' )
-            $this->player_edit->delete($record->PLAYERID);
         
         // Save record
         if(empty($record->PLAYERID))
