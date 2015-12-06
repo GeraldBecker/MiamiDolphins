@@ -22,5 +22,18 @@ class Team_list extends CI_Model {
         return $query->result_array();
     }
     
-
+    public function record_count() {
+        return $this->db->count_all("teams");
+    }
+    
+    public function get($limit, $start, $orderby, $orderdir) {
+        $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
+        $orderby = (in_array($orderby, $columns)) ? $orderby : "CITY";
+        $orderdir = ($orderdir == "desc") ? "desc" : "asc";
+        
+        $this->db->limit($limit, $start);
+        $this->db->order_by($orderby, $orderdir);
+        $query = $this->db->get('teams');
+        return $query->result_array();
+    }
 }
