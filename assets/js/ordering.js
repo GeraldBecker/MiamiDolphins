@@ -6,6 +6,14 @@ function OrderSort(orderby)
 }
 
 function ChangeLayout(layout) {
-	location.href = "/players/changeLayout/" + layout;	
+    location.href = "/players/changeLayout/" + layout;	
 }
 
+function TeamOrderSort(team_orderby)
+{
+    location.href = "/teams/order/" + team_orderby;
+}
+
+function TeamChangeLayout(team_layout) {
+    location.href = "/teams/changeLayout/" + team_layout;	
+}

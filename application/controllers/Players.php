@@ -5,7 +5,7 @@
  * 
  * controllers/Players.php
  *
- * @author Kevin Tangeman
+ * @author Team Dolphins
  */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -16,7 +16,7 @@ class Players extends Application {
         parent::__construct();
         $this->load->library('pagination');
         $this->load->helper('url');
-        $this->load->library('session');
+        //$this->load->library('session');
     }
 
     /**
