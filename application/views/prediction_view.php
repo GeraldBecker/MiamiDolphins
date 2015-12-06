@@ -1,0 +1,1 @@
+<div><b><u>Prediction:</u> {winner}:</b> {winscore}, <b>{loser}:</b> {losescore}</div>

@@ -57,7 +57,7 @@ class Player extends Application {
             }          
         }
         $this->data['message'] = $message;        
-        $this->data['fplayerid'] = makeTextField('', 'playerid', $player->PLAYERID, '', 10, 10, false);
+        $this->data['fplayerid'] = makeTextField('Player ID', 'playerid', $player->PLAYERID, '', 10, 10);
         $this->data['ffirstname'] = makeTextField('First Name', 'firstname', $player->FIRSTNAME);
         $this->data['flastname'] = makeTextField('Last Name', 'lastname', $player->LASTNAME);       
         $this->data['fteamcode'] = makeTextField('Team Code', 'teamcode', $player->TEAMCODE);
