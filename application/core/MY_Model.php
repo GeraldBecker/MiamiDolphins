@@ -214,6 +214,13 @@ class MY_Model extends CI_Model implements Active_Record {
         $this->db->where($this->_keyField, $key);
         $object = $this->db->delete($this->_tableName);
     }
+    
+    // Delete all records from the DB
+    function deleteall() {
+        //$this->db->where($this->_keyField, $key);
+        $this->db->where(1,1);
+        $object = $this->db->delete($this->_tableName);
+    }
 
     // Determine if a key exists
     function exists($key, $key2 = null) {
