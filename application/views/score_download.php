@@ -15,16 +15,20 @@
             Date
         </th>
         <th>
-            Score
+            Away Score
+        </th>
+        <th>
+            Home Score
         </th>
     </tr>
     {scores}
     <tr>
-        <td>{number}</td>
+        <td>{scoreentry}</td>
         <td>{away}</td>
         <td>{home}</td>
         <td>{date}</td>
-        <td>{score}</td>
+        <td>{awayscore}</td>
+        <td>{homescore}</td>
     </tr>
 
     {/scores}

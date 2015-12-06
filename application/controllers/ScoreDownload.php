@@ -46,17 +46,30 @@ class ScoreDownload extends Application {
         //var_dump($list);
         
         // prepare the list for presentation
+        $this->scoredownloads->detele_scores();
         $scores = array();
         foreach ($list as $arrayKey => $arrayValue) {
-            $row = array('number' => $arrayValue['number'], 
-                'away' => $arrayValue['away'], 
-                'home' => $arrayValue['home'],
-                'date' => $arrayValue['date'],
-                'score' => $arrayValue['score']);
+            $scoreSet = explode(":", $arrayValue['score']);
+            
+            $homecode = $arrayValue['home'];
+            $awaycode = $arrayValue['away'];
+            $homescore = $scoreSet[1];
+            $awayscore = $scoreSet[0];
+            $date = $arrayValue['date'];
+            $scoreentry = $arrayValue['number'];
+            
+            $row = array('scoreentry' => $scoreentry, 
+                'home' => $homecode,
+                'away' => $awaycode, 
+                'date' => $date,
+                'homescore' => $homescore,
+                'awayscore' => $awayscore);
             
             $scores[] = $row;
+            
+            $this->scoredownloads->add_score($homecode, $awaycode, $homescore, $awayscore, $date, $scoreentry);
         }
-        //sort($scores);
+        
         $this->data['scores'] = $scores;
 
         // Present the list to choose from
