@@ -5,6 +5,16 @@
     </p>
     
     <img id="stadium" src="assets/images/stadium.jpg">
+
+    <div>
+        <form action="welcome/predict" method="post">
+            {teams}
+            {predict_button}
+        </form>
+        <div id="prediction">
+        EMPTY DIV
+        </div>
+    </div>
     
     <table id="membertable">
         <tr>

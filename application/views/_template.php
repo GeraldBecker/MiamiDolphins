@@ -19,6 +19,7 @@ if (!defined('APPPATH'))
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
         <link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
         <script src="/assets/js/ordering.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     </head>
     <body>
         <div class="container">

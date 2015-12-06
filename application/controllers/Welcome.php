@@ -5,6 +5,9 @@ class Welcome extends Application {
 
 	public function index()
 	{
+		//$this->load->helper('')
+		$this->load->helper('form');
+
 	 	$this->load->model('members');
 
 		$this->data['pagebody'] = 'welcome';
@@ -19,8 +22,39 @@ class Welcome extends Application {
         }
 
         $this->data['member_list'] = $member_list;
-        
+        $this->makePredictionForm();
 		$this->render();
 		
+	}
+
+	private function makePredictionForm() {
+		$teams = $this->team_list->allTeams();
+		$teamList = array();
+		foreach ($teams as $team) {
+			if ($team["TEAMCODE"] != "MIA") {
+				$teamList[$team["TEAMCODE"]] = $team["CITY"];
+			}
+		}
+
+		$this->data['teams'] =  form_dropdown('teams', $teamList, '', 'id="teams"');
+
+		$this->data['predict_button'] = form_button('predict_button', 'Make Prediction', 'onClick="predict()"');
+	}
+
+	public function predict() {
+	    //if $this->input->post('team') does not exist in db
+	    	//echo 'Invalid team';
+			//exit;
+
+	    $CI = &get_instance();
+	    $params = array(
+	    	'winner' => 'MIA',
+	    	'loser' => $this->input->post('team'),
+	    	'winscore' => 100,
+	    	'losescore' => 99
+    	);
+
+	    echo $CI->parser->parse('prediction_view', $params, true);
+	    exit;
 	}
 }
