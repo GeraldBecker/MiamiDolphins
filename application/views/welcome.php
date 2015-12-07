@@ -12,7 +12,7 @@
             {predict_button}
         </form>
         <div id="prediction">
-        EMPTY DIV
+
         </div>
     </div>
     

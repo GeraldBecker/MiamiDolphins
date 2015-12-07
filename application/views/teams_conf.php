@@ -11,32 +11,73 @@
         Layout: <select onchange="TeamChangeLayout(this.value);">
             {teamlayoutoptions}
             <option value="{value}">{text}</option>
-        {/teamlayoutoptions}
+            {/teamlayoutoptions}
         </select>
         <p><b>Current Layout: Conference</b></p>
     </div>
     
     <div class="teamtable">
         <table>
+            <tr class="layoutheading">
+                <td colspan="9">American Football Conference</td>
+            </tr>                
             <tr>
                 <th></th>
-                <th>Conference</th>
-                <th>Team</th>
+                <th>AFC Team</th>
                 <th>Team Code</th>
-                <th>Division</th>                
+                <th>Division</th>
+                <th>W</th>
+                <th>L</th>
+                <th>PF</th>
+                <th>PA</th>
+                <th>NP</th>
             </tr>
-            {teamlist}
+            {teamListAFC}
             <tr>
-                <td class="nopadding"><img src="assets/images/{image}"></td>
-                <td>{conference}</td>
+                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
-                <td>{division}</td>                
+                <td>{division}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-            {/teamlist}
+            {/teamListAFC}
+            <tr><td colspan="9" height="20px"> </td></tr>
+            <tr class="layoutheading">
+                <td colspan="9">National Football Conference</td>
+            </tr>                
+            <tr>
+                <th></th>
+                <th>NFC Team</th>
+                <th>Team Code</th>
+                <th>Division</th>
+                <th>W</th>
+                <th>L</th>
+                <th>PF</th>
+                <th>PA</th>
+                <th>NP</th>
+            </tr>
+            {teamListNFC}
+            <tr>
+                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td>{city} {name}</td>
+                <td>{teamcode}</td>
+                <td>{division}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {/teamListNFC}
         </table>
-        <div id="teamlinks">
+<!--        <div id="teamlinks">
         {teamlinks}
-        </div>
+        </div>-->
     </div>
 </div>    
+
+        

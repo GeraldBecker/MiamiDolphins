@@ -11,7 +11,7 @@
         Layout: <select onchange="TeamChangeLayout(this.value);">
             {teamlayoutoptions}
             <option value="{value}">{text}</option>
-        {/teamlayoutoptions}
+            {/teamlayoutoptions}
         </select>
         <p><b>Current Layout: Division</b></p>
     </div>
@@ -24,19 +24,29 @@
                 <th>Team</th>
                 <th>Team Code</th>
                 <th>Conference</th>
+                <th>W</th>
+                <th>L</th>
+                <th>PF</th>
+                <th>PA</th>
+                <th>NP</th>
             </tr>
             {teamlist}
             <tr>
-                <td class="nopadding"><img src="assets/images/{image}"></td>
+                <td class="nopadding"><img src="/assets/images/{image}" width="120px" height="120px"></td>
                 <td>{division}</td>                
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{conference}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             {/teamlist}
         </table>
-        <div id="teamlinks">
+<!--        <div id="teamlinks">
         {teamlinks}
-        </div>
+        </div>-->
     </div>
 </div>    

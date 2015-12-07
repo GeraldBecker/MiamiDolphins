@@ -168,7 +168,10 @@ input#playerid {
     display: none;
 }
 
-.center_content {
-    text-align: center;
-    width: 100%;
+tr.layoutheading {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }

@@ -13,7 +13,7 @@ define('LOCAL', false);   // control whether we access our model locally, or ove
 define('RPCSERVER', ('http://nfl.jlparry.com/rpc'));    // endpoint fo the XML-RPC server    
 define('RPCPORT', 80); // port the XML-RPC service is listening on
 
-class ScoreDownload extends Application {
+class Scoredownload extends Application {
     function __construct() {
         parent::__construct();
     }
@@ -69,7 +69,7 @@ class ScoreDownload extends Application {
             
             $this->scoredownloads->add_score($homecode, $awaycode, $homescore, $awayscore, $date, $scoreentry);
         }
-        
+
         $this->data['scores'] = $scores;
 
         // Present the list to choose from
