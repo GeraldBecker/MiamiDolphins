@@ -180,3 +180,8 @@ tr.layoutheading {
     text-align: center;
     width: 100%;
 }
+
+img.nfllogo {
+    height: inherit;
+    max-width: inherit;
+}

@@ -32,7 +32,7 @@
             </tr>
             {teamlist}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="120px" height="120px"></td>
+                <td class="nopadding nfllogo"><img src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{division}</td>
