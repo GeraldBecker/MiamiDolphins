@@ -74,9 +74,6 @@
             </tr>
             {/teamListNFC}
         </table>
-<!--        <div id="teamlinks">
-        {teamlinks}
-        </div>-->
     </div>
 </div>    
 

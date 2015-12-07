@@ -1,4 +1,4 @@
-<div>
+<div class="center_content">
     <div id="sort_form">
         Sort By: <select onchange="OrderSort(this.value);">
             {options}
@@ -15,12 +15,12 @@
         </select>
         <p><b>Current Layout: Table</b></p>
     </div>
-    <div  class="playerstable"> 
+    
+    <a href='/player/add' style="font-size:24px;">Add a new player</a>
+    
+    <div  class="playerstable">
 
         <table>
-            <tr>
-                <td colspan="4" style="border:none;"><a href='/player/add' style="font-size:24px;">Add a new player</a> </td>
-            </tr>
             <tr class="playerstable">
                 <!-- <th></th> -->
                 <th class="playerstable">Name</th>
