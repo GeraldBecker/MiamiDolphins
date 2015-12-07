@@ -167,3 +167,8 @@ div.playerstable td.nopadding {
 input#playerid {
     display: none;
 }
+
+.center_content {
+    text-align: center;
+    width: 100%;
+}
