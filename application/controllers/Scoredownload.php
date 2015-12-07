@@ -19,34 +19,32 @@ class Scoredownload extends Application {
     }
     
     function index() {
-        // get the list of airports that can be flown from
+        //Create a blank list
         $list = array();
-        if (LOCAL) {
-            // totally local operation
-            //$this->load->model('airline');
-            //$list = $this->airline->airports();
-        } else {
-            // use XML-RPC to get the list
-            $this->load->library('xmlrpc');
-            $this->xmlrpc->server(RPCSERVER, RPCPORT);
-            //$this->xmlrpc->method('getOrigins');
-            $this->xmlrpc->method('since');
-            $request = array(); //"20150803"
-            $this->xmlrpc->request($request);
-            
-            //$this->xmlrpc->set_debug(true); // dont turn this on all the time
-            
-            if (!$this->xmlrpc->send_request()) {
-                echo $this->xmlrpc->display_error();
-                echo '<br/>' . var_dump($this->xmlrpc->response) . '<br/>';
-            }
-
-            $list = $this->xmlrpc->display_response();
+        
+        // use XML-RPC to get the list
+        $this->load->library('xmlrpc');
+        $this->xmlrpc->server(RPCSERVER, RPCPORT);
+        //$this->xmlrpc->method('getOrigins');
+        $this->xmlrpc->method('since');
+        $request = array(); //"20150803"
+        $this->xmlrpc->request($request);
+        
+        //$this->xmlrpc->set_debug(true); // dont turn this on all the time
+        
+        if (!$this->xmlrpc->send_request()) {
+            echo $this->xmlrpc->display_error();
+            echo '<br/>' . var_dump($this->xmlrpc->response) . '<br/>';
         }
-        //var_dump($list);
+
+        $list = $this->xmlrpc->display_response();
+        
         
         // prepare the list for presentation
+        
+        //Delete the current scores in the database
         $this->scoredownloads->detele_scores();
+        
         $scores = array();
         foreach ($list as $arrayKey => $arrayValue) {
             $scoreSet = explode(":", $arrayValue['score']);
@@ -67,6 +65,7 @@ class Scoredownload extends Application {
             
             $scores[] = $row;
             
+            //Add the scores to the database
             $this->scoredownloads->add_score($homecode, $awaycode, $homescore, $awayscore, $date, $scoreentry);
         }
 
