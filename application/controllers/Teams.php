@@ -111,9 +111,37 @@ class Teams extends Application {
         $source = $this->team_list->get($config["per_page"], $page, $orderby, $orderdir);
         $teamList = array();
         foreach ($source as $team) {
+            $stats = $this->team_list->getStats($team['TEAMCODE']);
+            var_dump($stats);
+            $wins = $losses = $ptsfor = $ptsagainst = $ptsnet = 0;
+            
+            
+            foreach($stats as $statentry) {
+                if($statentry['HOMETEAM'] == $team['TEAMCODE'])) {
+                    $ptsfor += $statentry['HOMESCORE'];
+                    $ptsagainst += $statentry['AWAYSCORE'];
+                    if($statentry['HOMESCORE'] > $statentry['AWAYSCORE']) {
+                        $wins++;
+                    } else {
+                        $losses++;
+                    }
+                } else {
+                    $ptsfor += $statentry['AWAYSCORE'];
+                    $ptsagainst += $statentry['HOMESCORE'];
+                    if($statentry['HOMESCORE'] < $statentry['AWAYSCORE']) {
+                        $wins++;
+                    } else {
+                        $losses++;
+                    }
+                }
+            }
+            
+            
+            
             $teamList[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
         }        
         $this->data['teamlist'] = $teamList;        
         
