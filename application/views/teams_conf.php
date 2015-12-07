@@ -38,11 +38,11 @@
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{division}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{wins}</td>
+                <td>{losses}</td>
+                <td>{ptsfor}</td>
+                <td>{ptsagainst}</td>
+                <td>{ptsnet}</td>
             </tr>
             {/teamListAFC}
             <tr><td colspan="9" height="20px"> </td></tr>
@@ -66,11 +66,11 @@
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{division}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{wins}</td>
+                <td>{losses}</td>
+                <td>{ptsfor}</td>
+                <td>{ptsagainst}</td>
+                <td>{ptsnet}</td>
             </tr>
             {/teamListNFC}
         </table>

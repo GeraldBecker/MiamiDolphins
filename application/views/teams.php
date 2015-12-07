@@ -37,11 +37,11 @@
                 <td>{teamcode}</td>
                 <td>{division}</td>
                 <td>{conference}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{wins}</td>
+                <td>{losses}</td>
+                <td>{ptsfor}</td>
+                <td>{ptsagainst}</td>
+                <td>{ptsnet}</td>
             </tr>
             {/teamlist}
         </table>
