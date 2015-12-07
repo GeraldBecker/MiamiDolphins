@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2015 at 11:22 AM
+-- Generation Time: Dec 07, 2015 at 05:44 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,6 +23,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `game_history`
+--
+
+DROP TABLE IF EXISTS `game_history`;
+CREATE TABLE IF NOT EXISTS `game_history` (
+  `HISTORYID` int(11) NOT NULL AUTO_INCREMENT,
+  `HOMETEAMCODE` varchar(3) NOT NULL,
+  `AWAYTEAMCODE` varchar(3) NOT NULL,
+  `HOMESCORE` int(11) NOT NULL,
+  `AWAYSCORE` int(11) NOT NULL,
+  `DATE` date NOT NULL,
+  `SCOREENTRY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`HISTORYID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1599 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `players`
 --
 
@@ -37,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `players` (
   `INFO` varchar(500) NOT NULL,
   `POSITION` varchar(30) NOT NULL,
   PRIMARY KEY (`PLAYERID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `players`
@@ -73,7 +91,7 @@ INSERT INTO `players` (`PLAYERID`, `TEAMCODE`, `FIRSTNAME`, `LASTNAME`, `PLAYERN
 (27, 'MIA', 'A.J.', 'Francis', 96, 'AJFrancis.jpg', 'Anthony Joseph Francis is an American football defensive tackle for the Miami Dolphins of the National Football League. He was originally signed by the Dolphins as an undrafted free agent in 2013. Francis played college football at Maryland.', 'Defensive tackle'),
 (28, 'MIA', 'Koa', 'Misi', 55, 'KoaMisi.jpg', 'Nawa''akoa Lisiate Foti Analeseanoa Misi is an American football linebacker. He played college football at Utah. He was considered one of the top linebacker prospects for the 2010 NFL Draft.', 'Linebacker'),
 (29, 'MIA', 'Matt', 'Hazel', 83, 'MattHazel.jpg', 'Matt Hazel is an American football wide receiver for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the sixth round of the 2014 NFL Draft. He played college football at Coastal Carolina.', 'Wide receiver'),
-(30, 'MIA', 'Kelvin', 'Sheppard', 52, 'KelvinSheppard.jpg', 'Kelvin Anthony Sheppard is an American football linebacker for the Miami Dolphins of the National Football League. The Buffalo Bills drafted him with the 68th pick in the 3rd round of the 2011 NFL Draft. He played college football at LSU.', 'Linebacker'),
+(30, 'MIA', 'Kelvin', 'Sheppard', 97, 'KelvinSheppard.jpg', 'Kelvin Anthony Sheppard is an American football linebacker for the Miami Dolphins of the National Football League. The Buffalo Bills drafted him with the 68th pick in the 3rd round of the 2011 NFL Draft. He played college football at LSU.', 'Linebacker'),
 (31, 'MIA', 'Dion', 'Sims', 80, 'DionSims.jpg', 'Dion Sims is an American football tight end for the Miami Dolphins of the National Football League. He was drafted by the Dolphins in the fourth round of the 2013 NFL Draft. He played college football at Michigan State.', 'Tight end'),
 (32, 'MIA', 'Jason', 'Fox', 74, 'JasonFox.jpg', 'Jason Fox is an American football offensive tackle for the Miami Dolphins of the National Football League. He was drafted by the Detroit Lions in the fourth round of the 2010 NFL Draft. He played college football at the University of Miami.', 'Tackle'),
 (33, 'MIA', 'Earl', 'Mitchell', 90, 'EarlMitchell.jpg', 'Earl Mitchell is an American football player for the Miami Dolphins of the National Football League. Mitchell is primarily a defensive tackle but has been recently tried out as a fullback.', 'Nose tackle'),
@@ -94,6 +112,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `CONFERENCE` varchar(50) NOT NULL,
   `DIVISION` varchar(50) NOT NULL,
   `IMAGE` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
@@ -101,39 +120,39 @@ CREATE TABLE IF NOT EXISTS `teams` (
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`ID`, `TEAMCODE`, `NAME`, `CONFERENCE`, `DIVISION`, `IMAGE`) VALUES
-(1, 'MIA', 'Miami Dolphins', 'American Football Conference', 'AFC East', 'MIA_logo-80x90.gif'),
-(2, 'NE', 'New England Patriots', 'American Football Conference', 'AFC East', 'NE_logo-80x90.gif'),
-(3, 'NYJ', 'New York Jets', 'American Football Conference', 'AFC East', 'NYJ_logo-80x90.gif'),
-(4, 'BUF', 'Buffalo Bills', 'American Football Conference', 'AFC East', 'BUF_logo-80x90.gif'),
-(5, 'CIN', 'Cincinnati Bengals', 'American Football Conference', 'AFC North', 'CIN_logo-80x90.gif'),
-(6, 'PIT', 'Pittsburgh Steelers', 'American Football Conference', 'AFC North', 'PIT_logo-80x90.gif'),
-(7, 'CLE', 'Cleveland Browns', 'American Football Conference', 'AFC North', 'CLE_logo-80x90.gif'),
-(8, 'BAL', 'Baltimore Ravens', 'American Football Conference', 'AFC North', 'BAL_logo-80x90.gif'),
-(9, 'IND', 'Indianapolis Colts', 'American Football Conference', 'AFC South Team', 'IND_logo-80x90.gif'),
-(10, 'JAC', 'Jacksonville Jaguars', 'American Football Conference', 'AFC South Team', 'JAC_logo-80x90.gif'),
-(11, 'HOU', 'Houston Texans', 'American Football Conference', 'AFC South Team', 'HOU_logo-80x90.gif'),
-(12, 'TEN', 'Tennessee Titans', 'American Football Conference', 'AFC South Team', 'TEN_logo-80x90.gif'),
-(13, 'DEN', 'Denver Broncos', 'American Football Conference', 'AFC West Team', 'DEN_logo-80x90.gif'),
-(14, 'OAK', 'Oakland Raiders', 'American Football Conference', 'AFC West Team', 'OAK_logo-80x90.gif'),
-(15, 'SD', 'San Diego Chargers', 'American Football Conference', 'AFC West Team', 'SD_logo-80x90.gif'),
-(16, 'KC', 'Kansas City Chiefs', 'American Football Conference', 'AFC West Team', 'KC_logo-80x90.gif'),
-(17, 'DAL', 'Dallas Cowboys', 'National Football Conference', 'NFC East Team', 'DAL_logo-80x90.gif'),
-(18, 'NYG', 'New York Giants', 'National Football Conference', 'NFC East Team', 'NYG_logo-80x90.gif'),
-(19, 'WAS', 'Washington Redskins', 'National Football Conference', 'NFC East Team', 'WAS_logo-80x90.gif'),
-(20, 'PHI', 'Philadelphia Eagles', 'National Football Conference', 'NFC East Team', 'PHI_logo-80x90.gif'),
-(21, 'GB', 'Green Bay Packers', 'National Football Conference', 'NFC North Team', 'GB_logo-80x90.gif'),
-(22, 'MIN', 'Minnesota Vikings', 'National Football Conference', 'NFC North Team', 'MIN_logo-80x90.gif'),
-(23, 'DET', 'Detroit Lions', 'National Football Conference', 'NFC North Team', 'DET_logo-80x90.gif'),
-(24, 'CHI', 'Chicago Bears', 'National Football Conference', 'NFC North Team', 'CHI_logo-80x90.gif'),
-(25, 'CAR', 'Carolina Panthers', 'National Football Conference', 'NFC South Team', 'CAR_logo-80x90.gif'),
-(26, 'ATL', 'Atlanta Falcons', 'National Football Conference', 'NFC South Team', 'ATL_logo-80x90.gif'),
-(27, 'TB', 'Tampa Bay Buccaneers', 'National Football Conference', 'NFC South Team', 'TB_logo-80x90.gif'),
-(28, 'NO', 'New Orleans Saints', 'National Football Conference', 'NFC South Team', 'NO_logo-80x90.gif'),
-(29, 'ARI', 'Arizona Cardinals', 'National Football Conference', 'NFC West Team', 'ARI_logo-80x90.gif'),
-(30, 'STL', 'St. Louis Rams', 'National Football Conference', 'NFC West Team', 'STL_logo-80x90.gif'),
-(31, 'SF', 'San Francisco 49ers', 'National Football Conference', 'NFC West Team', 'SF_logo-80x90.gif'),
-(32, 'SEA', 'Seattle Seahawks', 'National Football Conference', 'NFC West Team', 'SEA_logo-80x90.gif');
+INSERT INTO `teams` (`ID`, `TEAMCODE`, `NAME`, `CONFERENCE`, `DIVISION`, `IMAGE`, `CITY`) VALUES
+(1, 'MIA', 'Dolphins', 'American Football Conference', 'AFC East', 'MIA_logo-80x90.gif', 'Miami'),
+(2, 'NE', 'Patriots', 'American Football Conference', 'AFC East', 'NE_logo-80x90.gif', 'New England'),
+(3, 'NYJ', 'Jets', 'American Football Conference', 'AFC East', 'NYJ_logo-80x90.gif', 'New York'),
+(4, 'BUF', 'Bills', 'American Football Conference', 'AFC East', 'BUF_logo-80x90.gif', 'Buffalo'),
+(5, 'CIN', 'Bengals', 'American Football Conference', 'AFC North', 'CIN_logo-80x90.gif', 'Cincinnati'),
+(6, 'PIT', 'Steelers', 'American Football Conference', 'AFC North', 'PIT_logo-80x90.gif', 'Pittsburgh'),
+(7, 'CLE', 'Browns', 'American Football Conference', 'AFC North', 'CLE_logo-80x90.gif', 'Cleveland'),
+(8, 'BAL', 'Ravens', 'American Football Conference', 'AFC North', 'BAL_logo-80x90.gif', 'Baltimore'),
+(9, 'IND', 'Colts', 'American Football Conference', 'AFC South', 'IND_logo-80x90.gif', 'Indianapolis'),
+(10, 'JAC', 'Jaguars', 'American Football Conference', 'AFC South', 'JAC_logo-80x90.gif', 'Jacksonville'),
+(11, 'HOU', 'Texans', 'American Football Conference', 'AFC South', 'HOU_logo-80x90.gif', 'Houston'),
+(12, 'TEN', 'Titans', 'American Football Conference', 'AFC South', 'TEN_logo-80x90.gif', 'Tennessee'),
+(13, 'DEN', 'Broncos', 'American Football Conference', 'AFC West', 'DEN_logo-80x90.gif', 'Denver'),
+(14, 'OAK', 'Raiders', 'American Football Conference', 'AFC West', 'OAK_logo-80x90.gif', 'Oakland'),
+(15, 'SD', 'Chargers', 'American Football Conference', 'AFC West', 'SD_logo-80x90.gif', 'San Diego'),
+(16, 'KC', 'Chiefs', 'American Football Conference', 'AFC West', 'KC_logo-80x90.gif', 'Kansas City'),
+(17, 'DAL', 'Cowboys', 'National Football Conference', 'NFC East', 'DAL_logo-80x90.gif', 'Dallas'),
+(18, 'NYG', 'Giants', 'National Football Conference', 'NFC East', 'NYG_logo-80x90.gif', 'New York'),
+(19, 'WAS', 'Redskins', 'National Football Conference', 'NFC East', 'WAS_logo-80x90.gif', 'Washington'),
+(20, 'PHI', 'Eagles', 'National Football Conference', 'NFC East', 'PHI_logo-80x90.gif', 'Philadelphia'),
+(21, 'GB', 'Packers', 'National Football Conference', 'NFC North', 'GB_logo-80x90.gif', 'Green Bay'),
+(22, 'MIN', 'Vikings', 'National Football Conference', 'NFC North', 'MIN_logo-80x90.gif', 'Minnesota'),
+(23, 'DET', 'Lions', 'National Football Conference', 'NFC North', 'DET_logo-80x90.gif', 'Detroit'),
+(24, 'CHI', 'Bears', 'National Football Conference', 'NFC North', 'CHI_logo-80x90.gif', 'Chicago'),
+(25, 'CAR', 'Panthers', 'National Football Conference', 'NFC South', 'CAR_logo-80x90.gif', 'Carolina'),
+(26, 'ATL', 'Falcons', 'National Football Conference', 'NFC South', 'ATL_logo-80x90.gif', 'Atlanta'),
+(27, 'TB', 'Buccaneers', 'National Football Conference', 'NFC South', 'TB_logo-80x90.gif', 'Tampa Bay'),
+(28, 'NO', 'Saints', 'National Football Conference', 'NFC South', 'NO_logo-80x90.gif', 'New Orleans'),
+(29, 'ARI', 'Cardinals', 'National Football Conference', 'NFC West', 'ARI_logo-80x90.gif', 'Arizona'),
+(30, 'STL', 'Rams', 'National Football Conference', 'NFC West', 'STL_logo-80x90.gif', 'St. Louis'),
+(31, 'SF', '49ers', 'National Football Conference', 'NFC West', 'SF_logo-80x90.gif', 'San Francisco'),
+(32, 'SEA', 'Seahawks', 'National Football Conference', 'NFC West', 'SEA_logo-80x90.gif', 'Seattle');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
