@@ -37,7 +37,7 @@ class Team_list extends CI_Model {
     }
 
     public function getAFCTeams($orderby, $orderdir) {    
-        $columns = array("CITY", "NAME", "STANDING");
+        $columns = array("CITY", "NAME");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
 
@@ -47,7 +47,7 @@ class Team_list extends CI_Model {
     }
         
     public function getNFCTeams($orderby, $orderdir) {
-        $columns = array("CITY", "NAME", "STANDING");
+        $columns = array("CITY", "NAME");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
         

@@ -85,7 +85,6 @@ class Teams extends Application {
             $stats = $this->team_list->getStats($team['TEAMCODE']);
             $wins = $losses = $ptsfor = $ptsagainst = $ptsnet = 0;
             
-            
             foreach($stats as $statentry) {
                 if($statentry['HOMETEAMCODE'] == $team['TEAMCODE']) {
                     $ptsfor += $statentry['HOMESCORE'];
@@ -113,6 +112,15 @@ class Teams extends Application {
                 'image'=>$team["IMAGE"],
                 'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
         }        
+        
+        if($orderby == 'STANDING') {
+            if($orderdir == 'asc') {
+                usort($teamList, "Teams::standingsortasc");
+            } else {
+                usort($teamList, "Teams::standingsortdesc");
+            }
+        }
+        
         $this->data['teamlist'] = $teamList;        
         
        // get all the AFC teams for the Conference layout
@@ -123,27 +131,76 @@ class Teams extends Application {
         $teamListAFCEast = array();
         $teamListAFCWest = array();
         foreach ($AFCsource as $team) {
+            $stats = $this->team_list->getStats($team['TEAMCODE']);
+            $wins = $losses = $ptsfor = $ptsagainst = $ptsnet = 0;
+            
+            foreach($stats as $statentry) {
+                if($statentry['HOMETEAMCODE'] == $team['TEAMCODE']) {
+                    $ptsfor += $statentry['HOMESCORE'];
+                    $ptsagainst += $statentry['AWAYSCORE'];
+                    if($statentry['HOMESCORE'] > $statentry['AWAYSCORE']) {
+                        $wins++;
+                    } else {
+                        $losses++;
+                    }
+                } else {
+                    $ptsfor += $statentry['AWAYSCORE'];
+                    $ptsagainst += $statentry['HOMESCORE'];
+                    if($statentry['HOMESCORE'] < $statentry['AWAYSCORE']) {
+                        $wins++;
+                    } else {
+                        $losses++;
+                    }
+                }
+            }
+            
+            $ptsnet = $ptsfor - $ptsagainst;
+            
+            
             $teamListAFC[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             if($team['DIVISION'] == "AFC North"){
                 $teamListAFCNorth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }elseif($team['DIVISION'] == "AFC South"){
                 $teamListAFCSouth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }elseif($team['DIVISION'] == "AFC East"){
                 $teamListAFCEast[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }elseif($team['DIVISION'] == "AFC West"){
                 $teamListAFCWest[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }
         }        
+        
+        if($orderby == 'STANDING') {
+            if($orderdir == 'asc') {
+                usort($teamListAFC, "Teams::standingsortasc");
+                usort($teamListAFCNorth, "Teams::standingsortasc");
+                usort($teamListAFCSouth, "Teams::standingsortasc");
+                usort($teamListAFCEast, "Teams::standingsortasc");
+                usort($teamListAFCWest, "Teams::standingsortasc");
+            } else {
+                usort($teamListAFC, "Teams::standingsortdesc");
+                usort($teamListAFCNorth, "Teams::standingsortdesc");
+                usort($teamListAFCSouth, "Teams::standingsortdesc");
+                usort($teamListAFCEast, "Teams::standingsortdesc");
+                usort($teamListAFCWest, "Teams::standingsortdesc");
+            }
+        }
+        
+        
         $this->data['teamListAFC'] = $teamListAFC;  
         $this->data['teamListAFCNorth'] = $teamListAFCNorth;
         $this->data['teamListAFCSouth'] = $teamListAFCSouth;
@@ -158,27 +215,74 @@ class Teams extends Application {
         $teamListNFCEast = array();
         $teamListNFCWest = array();
         foreach ($NFCsource as $team) {
+            $stats = $this->team_list->getStats($team['TEAMCODE']);
+            $wins = $losses = $ptsfor = $ptsagainst = $ptsnet = 0;
+            
+            foreach($stats as $statentry) {
+                if($statentry['HOMETEAMCODE'] == $team['TEAMCODE']) {
+                    $ptsfor += $statentry['HOMESCORE'];
+                    $ptsagainst += $statentry['AWAYSCORE'];
+                    if($statentry['HOMESCORE'] > $statentry['AWAYSCORE']) {
+                        $wins++;
+                    } else {
+                        $losses++;
+                    }
+                } else {
+                    $ptsfor += $statentry['AWAYSCORE'];
+                    $ptsagainst += $statentry['HOMESCORE'];
+                    if($statentry['HOMESCORE'] < $statentry['AWAYSCORE']) {
+                        $wins++;
+                    } else {
+                        $losses++;
+                    }
+                }
+            }
+            
+            $ptsnet = $ptsfor - $ptsagainst;
+            
             $teamListNFC[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             if($team['DIVISION'] == "NFC North"){
                 $teamListNFCNorth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }elseif($team['DIVISION'] == "NFC South"){
                 $teamListNFCSouth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }elseif($team['DIVISION'] == "NFC East"){
                 $teamListNFCEast[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }elseif($team['DIVISION'] == "NFC West"){
                 $teamListNFCWest[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
-                'image'=>$team["IMAGE"]);
+                'image'=>$team["IMAGE"],
+                'wins' => $wins, 'losses' => $losses, 'ptsfor' => $ptsfor, 'ptsagainst' => $ptsagainst, 'ptsnet' => $ptsnet);
             }
         }        
+        
+        if($orderby == 'STANDING') {
+            if($orderdir == 'asc') {
+                usort($teamListNFC, "Teams::standingsortasc");
+                usort($teamListNFCNorth, "Teams::standingsortasc");
+                usort($teamListNFCSouth, "Teams::standingsortasc");
+                usort($teamListNFCEast, "Teams::standingsortasc");
+                usort($teamListNFCWest, "Teams::standingsortasc");
+            } else {
+                usort($teamListNFC, "Teams::standingsortdesc");
+                usort($teamListNFCNorth, "Teams::standingsortdesc");
+                usort($teamListNFCSouth, "Teams::standingsortdesc");
+                usort($teamListNFCEast, "Teams::standingsortdesc");
+                usort($teamListNFCWest, "Teams::standingsortdesc");
+            }
+        }
+        
         $this->data['teamListNFC'] = $teamListNFC; 
         $this->data['teamListNFCNorth'] = $teamListNFCNorth;
         $this->data['teamListNFCSouth'] = $teamListNFCSouth;
@@ -217,5 +321,13 @@ class Teams extends Application {
         $this->session->set_userdata('team_layout', $layout);
 
         redirect('/teams');
+    }
+    
+    function standingsortasc($a, $b) {
+        return $a["ptsnet"] > $b["ptsnet"];
+    }
+    
+    function standingsortdesc($a, $b) {
+        return $a["ptsnet"] < $b["ptsnet"];
     }
 }
