@@ -10,7 +10,7 @@
  *
  * @author Gerald Becker
  */
-class ScoreDownloads extends MY_Model {
+class Scoredownloads extends MY_Model {
    
     public function __construct() {
         parent::__construct('game_history', 'HISTORYID');
@@ -40,9 +40,24 @@ class ScoreDownloads extends MY_Model {
     }
     
     function get_team_scores($teamcode) {
-        $records = array($this->some('HOMETEAMCODE', $teamcode), $this->some('AWAYTEAMCODE', $teamcode));
+        $records = array('home' => $this->some('HOMETEAMCODE', $teamcode), 'away' => $this->some('AWAYTEAMCODE', $teamcode));
         return $records;
     }
+
+    function get_last_five_scores($teamcode) {
+        $where = "HOMETEAMCODE='$teamcode' OR AWAYTEAMCODE='$teamcode'";
+        $this->db->where($where);
+        $query = $this->db->get('game_history', 5);
+        return $query->result_array();
+    }
+    function get_last_five_against($teamcode, $oppTeamCode) {
+        $where = "(HOMETEAMCODE='$teamcode' OR AWAYTEAMCODE='$teamcode') AND 
+                  (HOMETEAMCODE='$oppTeamCode' OR AWAYTEAMCODE='$oppTeamCode')";
+        $this->db->where($where);
+        $query = $this->db->get('game_history', 5);
+        return $query->result_array();
+    }
+
     
     function detele_scores() {
         $this->deleteall();

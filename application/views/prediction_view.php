@@ -1,1 +1,1 @@
-<div><b><u>Prediction:</u> {winner}:</b> {winscore}, <b>{loser}:</b> {losescore}</div>
+<div><b><u>Prediction:</u> MIA:</b> {ourScore}, <b>{opponent}:</b> {oppScore}</div>
