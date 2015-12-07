@@ -33,7 +33,7 @@
             </tr>
             {teamListAFCEast}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  class="nfllogo" src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -58,7 +58,7 @@
             </tr>
             {teamListAFCNorth}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -83,7 +83,7 @@
             </tr>
             {teamListAFCSouth}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -108,7 +108,7 @@
             </tr>
             {teamListAFCWest}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -137,7 +137,7 @@
             </tr>
             {teamListNFCEast}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -162,7 +162,7 @@
             </tr>
             {teamListNFCNorth}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -187,7 +187,7 @@
             </tr>
             {teamListNFCSouth}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
@@ -212,7 +212,7 @@
             </tr>
             {teamListNFCWest}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{wins}</td>
