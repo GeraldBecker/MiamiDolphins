@@ -167,3 +167,11 @@ div.playerstable td.nopadding {
 input#playerid {
     display: none;
 }
+
+tr.layoutheading {
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}

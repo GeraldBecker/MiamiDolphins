@@ -17,7 +17,6 @@ class Teams extends Application {
         parent::__construct();
         $this->load->library('pagination');
         $this->load->helper('url');
-        //$this->load->library('session');
     }
     
     /*
@@ -35,8 +34,8 @@ class Teams extends Application {
         }
 
         $this->data['title'] = 'NFL Teams'; //Title on the page
-        $this->data['pageTitle'] = 'NFL Teams';   // Page title                
-        
+        $this->data['pageTitle'] = 'NFL Teams';   // Page title                                
+
         //Pagination stuff
         $config['base_url'] = base_url().'teams/index';
         $config['total_rows'] = $this->team_list->record_count();
@@ -46,14 +45,22 @@ class Teams extends Application {
         $config['last_tag_open'] = '<li>';
         $config['last_tag_close'] = '</li>';
         $config['first_link'] = 'First';
-        $config['last_link'] = 'Last';
-
+        $config['last_link'] = 'Last';                        
+//        if($this->session->has_userdata('team_layout')) {
+//            if($this->session->team_layout == "teams"){
+//                $config['total_rows'] = $this->team_list->record_count();
+//            }elseif ($this->session->team_layout == "teams_conf") {
+//                $config['total_rows'] = ($this->team_list->record_count()/2);
+//            }elseif ($this->session->team_layout == "teams_div") {
+//                $config['total_rows'] = $this->team_list->record_count();
+//            }
+//        }
+//        else{
+//            $config['total_rows'] = $this->team_list->record_count();
+//        }
         $this->pagination->initialize($config);
-
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         
-        //$orderby = "CITY"; //The default field that will be sorted
-        //$orderdir = "asc"; //The default direction of the sort
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         
         //Check if a custom sort by the user was selected
         if($this->session->has_userdata('team_order_by')) {
@@ -81,9 +88,7 @@ class Teams extends Application {
         } else {
             $currentSort .= ' in descending order.';
         }               
-        $this->data['teamordermethod'] = $currentSort;
-        
-        $source = $this->team_list->get($config["per_page"], $page, $orderby, $orderdir);
+        $this->data['teamordermethod'] = $currentSort;                
 
         $this->data["teamlinks"] = $this->pagination->create_links();
         
@@ -101,20 +106,37 @@ class Teams extends Application {
         $layoutoptions[] = array('value' => 'teams_conf', 'text'=>'Conference');
         $layoutoptions[] = array('value' => 'teams_div', 'text'=>'Division');
         $this->data['teamlayoutoptions'] = $layoutoptions;
-
-        
-        //get all the teams from our model
-        //$teams = $this->team_list->allTeams();       
-        
+              
+        // get all the teams for the League layout
+        $source = $this->team_list->get($config["per_page"], $page, $orderby, $orderdir);
         $teamList = array();
-        //build an array of data
         foreach ($source as $team) {
             $teamList[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
                 'image'=>$team["IMAGE"]);
-        }
+        }        
+        $this->data['teamlist'] = $teamList;        
         
-        $this->data['teamlist'] = $teamList;
+       // get all the AFC teams for the Conference layout
+        $AFCsource = $this->team_list->getAFCTeams($config["per_page"], $page, $orderby, $orderdir);
+        $teamListAFC = array();
+        foreach ($AFCsource as $team) {
+            $teamListAFC[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+        }        
+        $this->data['teamListAFC'] = $teamListAFC;    
+        
+        // get all the NFC teams for the Conference layout
+        $NFCsource = $this->team_list->getNFCTeams($config["per_page"], $page, $orderby, $orderdir);
+        $teamListNFC = array();
+        foreach ($NFCsource as $team) {
+            $teamListNFC[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+        }        
+        $this->data['teamListNFC'] = $teamListNFC; 
+        
         $config['base_url'] = base_url();
         $this->render();                
     }           
