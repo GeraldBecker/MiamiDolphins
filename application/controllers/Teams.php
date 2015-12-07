@@ -112,12 +112,11 @@ class Teams extends Application {
         $teamList = array();
         foreach ($source as $team) {
             $stats = $this->team_list->getStats($team['TEAMCODE']);
-            var_dump($stats);
             $wins = $losses = $ptsfor = $ptsagainst = $ptsnet = 0;
             
             
             foreach($stats as $statentry) {
-                if($statentry['HOMETEAM'] == $team['TEAMCODE'])) {
+                if($statentry['HOMETEAMCODE'] == $team['TEAMCODE']) {
                     $ptsfor += $statentry['HOMESCORE'];
                     $ptsagainst += $statentry['AWAYSCORE'];
                     if($statentry['HOMESCORE'] > $statentry['AWAYSCORE']) {
@@ -136,7 +135,7 @@ class Teams extends Application {
                 }
             }
             
-            
+            $ptsnet = $ptsfor - $ptsagainst;
             
             $teamList[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
