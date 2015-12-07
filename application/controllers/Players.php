@@ -16,7 +16,6 @@ class Players extends Application {
         parent::__construct();
         $this->load->library('pagination');
         $this->load->helper('url');
-        //$this->load->library('session');
     }
 
     /**
