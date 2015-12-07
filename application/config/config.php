@@ -6,7 +6,7 @@ $config['menu_choices'] = array(
     	array('name' => 'Home', 'link' => '/'),
         array('name' => 'Roster', 'link' => '/players'),
         array('name' => 'Teams', 'link' => '/teams'),
-        array('name' => 'Download Scores', 'link' => '/ScoreDownload'),
+        array('name' => 'Download Scores', 'link' => '/Scoredownload'),
         array('name' => 'About', 'link' => '/about')
         )
     );
