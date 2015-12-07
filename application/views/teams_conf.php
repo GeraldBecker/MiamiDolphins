@@ -34,7 +34,7 @@
             </tr>
             {teamListAFC}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{division}</td>
@@ -62,7 +62,7 @@
             </tr>
             {teamListNFC}
             <tr>
-                <td class="nopadding"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding"><img class="nfllogo"  src="/assets/images/{image}" width="60px" height="60px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{division}</td>
