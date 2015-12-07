@@ -28,12 +28,36 @@ class Team_list extends CI_Model {
     
     public function get($limit, $start, $orderby, $orderdir) {
         $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
-        $orderby = (in_array($orderby, $columns)) ? $orderby : "CITY";
-        $orderdir = ($orderdir == "desc") ? "desc" : "asc";
+        $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
+        $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
         
         $this->db->limit($limit, $start);
-        $this->db->order_by($orderby, $orderdir);
+        $this->db->order_by($orderTeamsBy, $orderTeamsDir);
         $query = $this->db->get('teams');
+        return $query->result_array();
+    }
+    
+    //public function getAFCTeams($limit, $start, $orderby, $orderdir) {
+    public function getAFCTeams($orderby, $orderdir) {    
+        $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
+        $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
+        $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
+        
+        //$this->db->limit($limit, $start);
+        $this->db->order_by($orderTeamsBy, $orderTeamsDir);
+        $query = $this->db->get_where('teams', array('conference' => "American Football Conference"));
+        return $query->result_array();
+    }
+        
+    //public function getNFCTeams($limit, $start, $orderby, $orderdir) {
+    public function getNFCTeams($orderby, $orderdir) {
+        $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
+        $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
+        $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
+        
+        //$this->db->limit($limit, $start);
+        $this->db->order_by($orderTeamsBy, $orderTeamsDir);
+        $query = $this->db->get_where('teams', array('conference' => "National Football Conference"));
         return $query->result_array();
     }
 }
