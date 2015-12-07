@@ -45,8 +45,5 @@
             </tr>
             {/teamlist}
         </table>
-        <div id="teamlinks">
-        {teamlinks}
-        </div>
     </div>
 </div>    

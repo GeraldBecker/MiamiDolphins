@@ -22,7 +22,6 @@ class Teams extends Application {
     /*
      * Loads the team page and builds the array to be used by making a call
      * to the team list model.
-     * 
      */
     public function index()
     {
@@ -35,32 +34,6 @@ class Teams extends Application {
 
         $this->data['title'] = 'NFL Teams'; //Title on the page
         $this->data['pageTitle'] = 'NFL Teams';   // Page title                                
-
-        //Pagination stuff
-        $config['base_url'] = base_url().'teams/index';
-        $config['total_rows'] = $this->team_list->record_count();
-        $config['per_page'] = 12; 
-        $config['first_url'] = '1';
-        $config['last_url'] = '1';
-        $config['last_tag_open'] = '<li>';
-        $config['last_tag_close'] = '</li>';
-        $config['first_link'] = 'First';
-        $config['last_link'] = 'Last';                        
-//        if($this->session->has_userdata('team_layout')) {
-//            if($this->session->team_layout == "teams"){
-//                $config['total_rows'] = $this->team_list->record_count();
-//            }elseif ($this->session->team_layout == "teams_conf") {
-//                $config['total_rows'] = ($this->team_list->record_count()/2);
-//            }elseif ($this->session->team_layout == "teams_div") {
-//                $config['total_rows'] = $this->team_list->record_count();
-//            }
-//        }
-//        else{
-//            $config['total_rows'] = $this->team_list->record_count();
-//        }
-        $this->pagination->initialize($config);
-        
-        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         
         //Check if a custom sort by the user was selected
         if($this->session->has_userdata('team_order_by')) {
@@ -79,8 +52,8 @@ class Teams extends Application {
             $currentSort .= ' City';
         } else if($orderby == 'NAME') {
             $currentSort .= ' Team Name';
-        //} else if($orderby == 'STANDING') {
-        //    $currentSort .= ' Standing';        
+        } else if($orderby == 'STANDING') {
+            $currentSort .= ' Standing';        
         }
         
         if($orderdir == 'asc') {
@@ -89,15 +62,13 @@ class Teams extends Application {
             $currentSort .= ' in descending order.';
         }               
         $this->data['teamordermethod'] = $currentSort;                
-
-        $this->data["teamlinks"] = $this->pagination->create_links();
         
         //Create the options
         $options = array();
         $options[] = array('value' => '', 'text'=>'');
         $options[] = array('value' => 'CITY', 'text'=>'City');
         $options[] = array('value' => 'NAME', 'text'=>'Team Name');
-        //$options[] = array('value' => 'STANDING', 'text'=>'Standing');       
+        $options[] = array('value' => 'STANDING', 'text'=>'Standing');       
         $this->data['teamsortoptions'] = $options;
 
         $layoutoptions = array();
@@ -108,7 +79,7 @@ class Teams extends Application {
         $this->data['teamlayoutoptions'] = $layoutoptions;
               
         // get all the teams for the League layout
-        $source = $this->team_list->get($config["per_page"], $page, $orderby, $orderdir);
+        $source = $this->team_list->get($orderby, $orderdir);
         $teamList = array();
         foreach ($source as $team) {
             $stats = $this->team_list->getStats($team['TEAMCODE']);
@@ -145,24 +116,74 @@ class Teams extends Application {
         $this->data['teamlist'] = $teamList;        
         
        // get all the AFC teams for the Conference layout
-        $AFCsource = $this->team_list->getAFCTeams($config["per_page"], $page, $orderby, $orderdir);
+        $AFCsource = $this->team_list->getAFCTeams($orderby, $orderdir);
         $teamListAFC = array();
+        $teamListAFCNorth = array();
+        $teamListAFCSouth = array();
+        $teamListAFCEast = array();
+        $teamListAFCWest = array();
         foreach ($AFCsource as $team) {
             $teamListAFC[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
                 'image'=>$team["IMAGE"]);
+            if($team['DIVISION'] == "AFC North"){
+                $teamListAFCNorth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }elseif($team['DIVISION'] == "AFC South"){
+                $teamListAFCSouth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }elseif($team['DIVISION'] == "AFC East"){
+                $teamListAFCEast[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }elseif($team['DIVISION'] == "AFC West"){
+                $teamListAFCWest[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }
         }        
-        $this->data['teamListAFC'] = $teamListAFC;    
+        $this->data['teamListAFC'] = $teamListAFC;  
+        $this->data['teamListAFCNorth'] = $teamListAFCNorth;
+        $this->data['teamListAFCSouth'] = $teamListAFCSouth;
+        $this->data['teamListAFCEast'] = $teamListAFCEast;
+        $this->data['teamListAFCWest'] = $teamListAFCWest;
         
         // get all the NFC teams for the Conference layout
-        $NFCsource = $this->team_list->getNFCTeams($config["per_page"], $page, $orderby, $orderdir);
+        $NFCsource = $this->team_list->getNFCTeams($orderby, $orderdir);
         $teamListNFC = array();
+        $teamListNFCNorth = array();
+        $teamListNFCSouth = array();
+        $teamListNFCEast = array();
+        $teamListNFCWest = array();
         foreach ($NFCsource as $team) {
             $teamListNFC[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
                 'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
                 'image'=>$team["IMAGE"]);
+            if($team['DIVISION'] == "NFC North"){
+                $teamListNFCNorth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }elseif($team['DIVISION'] == "NFC South"){
+                $teamListNFCSouth[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }elseif($team['DIVISION'] == "NFC East"){
+                $teamListNFCEast[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }elseif($team['DIVISION'] == "NFC West"){
+                $teamListNFCWest[] = array('city' => $team['CITY'], 'name' => $team['NAME'], 'division' => $team['DIVISION'], 
+                'teamcode'=>$team['TEAMCODE'], 'conference'=>$team['CONFERENCE'], 
+                'image'=>$team["IMAGE"]);
+            }
         }        
         $this->data['teamListNFC'] = $teamListNFC; 
+        $this->data['teamListNFCNorth'] = $teamListNFCNorth;
+        $this->data['teamListNFCSouth'] = $teamListNFCSouth;
+        $this->data['teamListNFCEast'] = $teamListNFCEast;
+        $this->data['teamListNFCWest'] = $teamListNFCWest;
         
         $config['base_url'] = base_url();
         $this->render();                

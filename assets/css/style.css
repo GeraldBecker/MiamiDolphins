@@ -175,3 +175,8 @@ tr.layoutheading {
     font-size: 20px;
     font-weight: bold;
 }
+
+.center_content {
+    text-align: center;
+    width: 100%;
+}

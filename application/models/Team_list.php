@@ -26,43 +26,38 @@ class Team_list extends CI_Model {
         return $this->db->count_all("teams");
     }
     
-    public function get($limit, $start, $orderby, $orderdir) {
+    public function get($orderby, $orderdir) {
         $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
         
-        $this->db->limit($limit, $start);
         $this->db->order_by($orderTeamsBy, $orderTeamsDir);
         $query = $this->db->get('teams');
         return $query->result_array();
     }
-    
-    //public function getAFCTeams($limit, $start, $orderby, $orderdir) {
+
     public function getAFCTeams($orderby, $orderdir) {    
-        $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
+        $columns = array("CITY", "NAME", "STANDING");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
-        
-        //$this->db->limit($limit, $start);
+
         $this->db->order_by($orderTeamsBy, $orderTeamsDir);
         $query = $this->db->get_where('teams', array('conference' => "American Football Conference"));
         return $query->result_array();
     }
         
-    //public function getNFCTeams($limit, $start, $orderby, $orderdir) {
     public function getNFCTeams($orderby, $orderdir) {
-        $columns = array("CITY", "NAME", "CONFERENCE", "DIVISION");
+        $columns = array("CITY", "NAME", "STANDING");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
         
-        //$this->db->limit($limit, $start);
         $this->db->order_by($orderTeamsBy, $orderTeamsDir);
         $query = $this->db->get_where('teams', array('conference' => "National Football Conference"));
         return $query->result_array();
     }
     
+
     function getStats($teamcode) {
-        
         $this->db->select('HOMETEAMCODE, AWAYTEAMCODE, HOMESCORE, AWAYSCORE');
         
         $this->db->where('HOMETEAMCODE', $teamcode);
