@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+///
+// The home page for the application
+//
+// Author: Wilson
+///
 class Welcome extends Application {
 
 	public function index()
@@ -28,9 +33,11 @@ class Welcome extends Application {
 		
 	}
 
+	//Set up the dropdown and button for predictions.
 	private function makePredictionForm() {
 		$teams = $this->team_list->allTeams();
 		$teamList = array();
+
 		foreach ($teams as $team) {
 			if ($team["TEAMCODE"] != "MIA") {
 				$teamList[$team["TEAMCODE"]] = $team["CITY"];
@@ -38,18 +45,37 @@ class Welcome extends Application {
 		}
 
 		$this->data['teams'] =  form_dropdown('teams', $teamList, '', 'id="teams"');
-
 		$this->data['predict_button'] = form_button('predict_button', 'Make Prediction', 'onClick="predict()"');
 	}
 
+	//check to see if this team code exists in the database
+	function exists($team) {
+		$allentries = $this->team_list->allTeams();
+
+		foreach ($allentries as $entry) {
+			if ($entry['TEAMCODE'] == $team) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	//Predict scores
 	public function predict() {
+		// detect non-AJAX entry
+        if (!isset($_POST['team'])) 
+        	redirect("/");
+
 		$oppTeam = $this->input->post('team');
-	    //if $this->input->post('team') does not exist in db
-	    	//echo 'Invalid team';
-			//exit;
+
+		//make sure we have a valid team code
+		if (!$this->exists($oppTeam)) {
+			echo 'Invalid team';
+			exit();
+		}
 
 	    $CI = &get_instance();
-
 
     	//Get the average for all games
 	    $overall = $this->overallAverage('MIA');
@@ -74,64 +100,74 @@ class Welcome extends Application {
     	);
 
 	    echo $CI->parser->parse('prediction_view', $params, true);
-	    exit;
+	    exit();
 	}
 
-	function wonGame($ourScore, $oppScore) {
-		if ($ourScore !== $oppScore) {
-			return $ourScore > $oppScore;
-		} 
-		return "TIE";
-	}
-
+	// Get the overall average score per game for a team.
 	function overallAverage($teamcode) {
-    	$sumAll = 0;
-    	$countAll = 0;
+    	$sum = 0;
+    	$count = 0;
    		$scores = $this->scoredownloads->get_team_scores($teamcode);
+
+   		// add up all the scores and get the count for the average
    		foreach ($scores['home'] as $score) {
-   			$sumAll += $score->HOMESCORE;
-   			$countAll++;
+   			$sum += $score->HOMESCORE;
+   			$count++;
    		}
    		foreach ($scores['away'] as $score) {
-   			$sumAll += $score->AWAYSCORE;
-   			$countAll++;
+   			$sum += $score->AWAYSCORE;
+   			$count++;
    		}
-   		return $sumAll / $countAll;
+   		if ($count == 0)
+   			return 0;
+
+   		return $sum / $count;
 	}
 
+	// Get average score per game for a team's lsat five games
 	function lastFiveAverage($teamcode) {
-   		$sumFive = 0;
-   		$countFive = 0;
+   		$sum = 0;
+   		$count = 0;
    		$lastFive = $this->scoredownloads->get_last_five_scores($teamcode);
+
+   		// add up all the scores and get the count for the average
    		foreach ($lastFive as $score) {
-   			if ($score['HOMETEAMCODE'] === $teamcode) {
-   				$sumFive += $score['HOMESCORE'];
-   			} else if ($score['AWAYTEAMCODE'] === $teamcode) {
-   				$sumFive += $score['AWAYSCORE'];
+   			if ($score['HOMETEAMCODE'] == $teamcode) {
+   				$sum += $score['HOMESCORE'];
+   			} else if ($score['AWAYTEAMCODE'] == $teamcode) {
+   				$sum += $score['AWAYSCORE'];
    			}
-   			$countFive++;
+   			$count++;
    		}
-   		return $sumFive / $countFive;
+
+   		if ($count == 0) 
+   			return 0;
+
+   		return $sum / $count;
 	}
 
+	// Get the average score per game for a team's last five games against another team
 	function lastFiveAgainst($teamcode, $oppteamcode) {
 		$sum = 0;
 		$count = 0;
 		$lastFive = $this->scoredownloads->get_last_five_against($teamcode, $oppteamcode);
+
+		// add up all the scores and get the count for the average
 		foreach ($lastFive as $score) {
-			if ($score['HOMETEAMCODE'] === $teamcode) {
+			if ($score['HOMETEAMCODE'] == $teamcode) {
 				$sum += $score['HOMESCORE'];
 			} else if ($score['AWAYTEAMCODE'] == $teamcode) {
 				$sum += $score['AWAYSCORE'];
 			}
 			$count++;
 		}
-		if ($count === 0) 
+		if ($count == 0) 
 			return 0;
 
 		return $sum / $count;
 	}
 
+	// Predict a team's score based on their average scores
 	function predictScore($overall, $lastFive, $headToHead) {
 		return round((0.70 * $overall) + (0.20 * $lastFive) + (0.10 * $headToHead));
 	}

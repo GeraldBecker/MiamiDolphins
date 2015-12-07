@@ -16,11 +16,11 @@ class Team_list extends CI_Model {
      * Pulls a listing of all the teams in the NFL.
      */
     public function allTeams() {
-        $this->db->order_by("CONFERENCE", "asc");        
-        $this->db->order_by("DIVISION", "asc");
+        $this->db->order_by("CITY", "asc");        
         $query = $this->db->get('teams');
         return $query->result_array();
     }
+
     
     public function record_count() {
         return $this->db->count_all("teams");

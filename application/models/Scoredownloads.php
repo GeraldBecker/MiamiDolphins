@@ -39,17 +39,21 @@ class Scoredownloads extends MY_Model {
         $this->add($record);
     }
     
+    //Get all the scores (both home and away) for a team
     function get_team_scores($teamcode) {
         $records = array('home' => $this->some('HOMETEAMCODE', $teamcode), 'away' => $this->some('AWAYTEAMCODE', $teamcode));
         return $records;
     }
 
+    //Get the last five scores for a particular team
     function get_last_five_scores($teamcode) {
         $where = "HOMETEAMCODE='$teamcode' OR AWAYTEAMCODE='$teamcode'";
         $this->db->where($where);
         $query = $this->db->get('game_history', 5);
         return $query->result_array();
     }
+
+    //Get the last five scores for a team against another
     function get_last_five_against($teamcode, $oppTeamCode) {
         $where = "(HOMETEAMCODE='$teamcode' OR AWAYTEAMCODE='$teamcode') AND 
                   (HOMETEAMCODE='$oppTeamCode' OR AWAYTEAMCODE='$oppTeamCode')";
