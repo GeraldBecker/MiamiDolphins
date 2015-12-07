@@ -74,6 +74,7 @@ class Scoredownload extends Application {
 
         // Present the list to choose from
         $this->data['pagebody'] = 'score_download';
+        $this->data['title'] = 'NFL Scores'; //Title on the page
         $this->render();
     }
 }

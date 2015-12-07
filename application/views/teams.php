@@ -1,4 +1,4 @@
-<div>    
+<div class="center_content">    
     <div id="team_sort_form">
         Sort By: <select onchange="TeamOrderSort(this.value);">
             {teamsortoptions}
@@ -32,7 +32,7 @@
             </tr>
             {teamlist}
             <tr>
-                <td class="nopadding nfllogo"><img src="/assets/images/{image}" width="60px" height="60px"></td>
+                <td class="nopadding nfllogo"><img src="/assets/images/{image}" width="600px" height="600px"></td>
                 <td>{city} {name}</td>
                 <td>{teamcode}</td>
                 <td>{division}</td>

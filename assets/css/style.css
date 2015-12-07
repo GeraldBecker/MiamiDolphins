@@ -90,7 +90,7 @@ td.font {
     text-align: center;
     display: block;
     margin: 0 auto;
-    width: 700px;
+    width: 625px;
 }
 
 .teamtable td {
@@ -105,6 +105,28 @@ td.font {
 }
 
 div.teamtable td.nopadding {
+    padding: 0;
+}
+
+.scorestable {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 483px;
+}
+
+.scorestable td {
+    padding: 0 20px;
+    border: 1px solid #105878;
+}
+
+.scorestable th {
+    background-color: #f58220;
+    border: 1px solid #f58220;
+    color: white;
+}
+
+div.scorestable td.nopadding {
     padding: 0;
 }
 
@@ -184,4 +206,19 @@ tr.layoutheading {
 img.nfllogo {
     height: inherit;
     max-width: inherit;
+}
+
+a {
+    color: #158f98;
+}
+
+.add_player {
+    border: 2px solid #f58220;
+    border-radius: 8px;
+    padding: 10px;
+    font-size:24px;
+}
+
+#prediction {
+    color: #158f98;
 }

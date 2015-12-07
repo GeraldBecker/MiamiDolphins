@@ -16,7 +16,8 @@
         <p><b>Current Layout: Table</b></p>
     </div>
     
-    <a href='/player/add' style="font-size:24px;">Add a new player</a>
+    <a class="add_player" href='/player/add'>Add a new player</a>
+    <br><br>
     
     <div  class="playerstable">
 
