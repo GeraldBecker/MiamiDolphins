@@ -37,7 +37,7 @@ class Team_list extends CI_Model {
     }
 
     public function getAFCTeams($orderby, $orderdir) {    
-        $columns = array("CITY", "NAME", "STANDING");
+        $columns = array("CITY", "NAME");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
 
@@ -47,7 +47,7 @@ class Team_list extends CI_Model {
     }
         
     public function getNFCTeams($orderby, $orderdir) {
-        $columns = array("CITY", "NAME", "STANDING");
+        $columns = array("CITY", "NAME");
         $orderTeamsBy = (in_array($orderby, $columns)) ? $orderby : "CITY";
         $orderTeamsDir = ($orderdir == "desc") ? "desc" : "asc";
         
@@ -56,4 +56,15 @@ class Team_list extends CI_Model {
         return $query->result_array();
     }
     
+
+    function getStats($teamcode) {
+        $this->db->select('HOMETEAMCODE, AWAYTEAMCODE, HOMESCORE, AWAYSCORE');
+        
+        $this->db->where('HOMETEAMCODE', $teamcode);
+        $this->db->or_where('AWAYTEAMCODE', $teamcode);
+        
+        $query = $this->db->get('game_history');
+
+        return $query->result_array();
+    }
 }
