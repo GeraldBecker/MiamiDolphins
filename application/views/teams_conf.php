@@ -1,4 +1,4 @@
-<div>    
+<div class="center_content">    
     <div id="team_sort_form">
         Sort By: <select onchange="TeamOrderSort(this.value);">
             {teamsortoptions}
