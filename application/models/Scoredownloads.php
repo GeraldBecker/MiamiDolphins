@@ -16,17 +16,10 @@ class Scoredownloads extends MY_Model {
         parent::__construct('game_history', 'HISTORYID');
     }
     
-    /**
-     * 
-     */
-    public function all() {
-        /*$this->db->order_by("LASTNAME", "asc");        
-        $query = $this->db->get('players');
-        return $query->result_array();*/
-        
-        
-    }
     
+    /*
+     Adds a score to the database.
+    */
     function add_score($homecode, $awaycode, $homescore, $awayscore, $date, $scoreentry) {
         $record = $this->create();
         $record->HOMETEAMCODE = $homecode;
@@ -62,7 +55,7 @@ class Scoredownloads extends MY_Model {
         return $query->result_array();
     }
 
-    
+    /* Delete all the scores from the database*/
     function detele_scores() {
         $this->deleteall();
     }
